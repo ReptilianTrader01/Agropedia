@@ -1,0 +1,924 @@
+/* ==================================================
+   HERO
+================================================== */
+
+.about-hero {
+
+    position: relative;
+
+    min-height: 560px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    background-image:
+        url("../assets/images/about/about-hero.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+.about-hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(25, 45, 28, .78),
+            rgba(25, 45, 28, .72)
+        );
+
+}
+
+.about-hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 850px;
+
+    padding: 60px 20px;
+
+}
+
+.about-hero h1 {
+
+    font-size:
+        clamp(42px, 6vw, 70px);
+
+    line-height: 1.05;
+
+    margin:
+        15px 0 25px;
+
+}
+
+.about-hero p {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #e4ebe2;
+
+    line-height: 1.8;
+
+    font-size: 17px;
+
+}
+
+
+/* ==================================================
+   HISTORIA
+================================================== */
+
+.about-story {
+
+    display: grid;
+
+    grid-template-columns:
+        .9fr 1.1fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+    padding-top: 110px;
+
+    padding-bottom: 110px;
+
+}
+
+.about-story-image {
+
+    height: 550px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+}
+
+.about-story-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.about-story-content h2 {
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        clamp(32px, 4vw, 46px);
+
+    line-height: 1.15;
+
+    margin:
+        10px 0 25px;
+
+}
+
+.about-story-content p {
+
+    color:
+        var(--text-light);
+
+    line-height: 1.8;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* ==================================================
+   MISSION
+================================================== */
+
+.mission-section {
+
+    background:
+        #f4f7f2;
+
+    padding:
+        110px 0;
+
+}
+
+.section-heading {
+
+    text-align: center;
+
+    max-width: 720px;
+
+    margin:
+        0 auto 60px;
+
+}
+
+.section-heading h2 {
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        clamp(32px, 4vw, 46px);
+
+    line-height: 1.15;
+
+    margin:
+        10px 0 18px;
+
+}
+
+.section-heading p {
+
+    color:
+        var(--text-light);
+
+    line-height: 1.8;
+
+}
+
+
+.mission-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+.mission-card {
+
+    background: white;
+
+    border:
+        1px solid #e2e8df;
+
+    border-radius: 16px;
+
+    padding: 32px;
+
+    transition: .2s;
+
+}
+
+.mission-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(30,60,30,.08);
+
+}
+
+.mission-icon {
+
+    font-size: 38px;
+
+    margin-bottom: 18px;
+
+}
+
+.mission-card h3 {
+
+    color:
+        var(--green-dark);
+
+    margin-bottom: 10px;
+
+}
+
+.mission-card p {
+
+    color:
+        var(--text-light);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ==================================================
+   QUÉ ES AGROPEDIA
+================================================== */
+
+.what-is-section {
+
+    padding:
+        110px 0;
+
+}
+
+.features-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+.feature-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border:
+        1px solid #e2e8df;
+
+    border-radius: 16px;
+
+    background: white;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: .25s;
+
+}
+
+.feature-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(30,60,30,.1);
+
+}
+
+.feature-card-image {
+
+    height: 190px;
+
+    overflow: hidden;
+
+}
+
+.feature-card-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: .3s;
+
+}
+
+.feature-card:hover img {
+
+    transform:
+        scale(1.05);
+
+}
+
+.feature-card-content {
+
+    padding: 25px;
+
+}
+
+.feature-card-content > span {
+
+    font-size: 27px;
+
+}
+
+.feature-card-content h3 {
+
+    color:
+        var(--green-dark);
+
+    font-size: 21px;
+
+    margin:
+        10px 0;
+
+}
+
+.feature-card-content p {
+
+    color:
+        var(--text-light);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+
+}
+
+.feature-card-content strong {
+
+    color:
+        var(--green);
+
+    font-size: 12px;
+
+}
+
+
+/* ==================================================
+   VISIÓN
+================================================== */
+
+.vision-section {
+
+    background:
+        #f4f7f2;
+
+    padding:
+        110px 0;
+
+}
+
+.vision-section .section-container {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 90px;
+
+    align-items: center;
+
+}
+
+.vision-content h2 {
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        clamp(34px, 4vw, 48px);
+
+    line-height: 1.15;
+
+    margin:
+        10px 0 25px;
+
+}
+
+.vision-content p {
+
+    color:
+        var(--text-light);
+
+    line-height: 1.8;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* LISTA */
+
+.vision-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+.vision-item {
+
+    display: grid;
+
+    grid-template-columns: 55px 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+
+    background: white;
+
+    border:
+        1px solid #e1e8df;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+}
+
+.vision-item > span {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--green-dark);
+
+    font-weight: 900;
+
+    font-size: 12px;
+
+}
+
+.vision-item h3 {
+
+    color:
+        var(--green-dark);
+
+    margin:
+        2px 0 7px;
+
+    font-size: 17px;
+
+}
+
+.vision-item p {
+
+    color:
+        var(--text-light);
+
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==================================================
+   CREADOR
+================================================== */
+
+.creator-section {
+
+    padding:
+        110px 0;
+
+}
+
+.creator-section .section-container {
+
+    display: grid;
+
+    grid-template-columns:
+        350px 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+    max-width: 950px;
+
+}
+
+.creator-image {
+
+    width: 350px;
+
+    height: 350px;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    border:
+        8px solid #eef3eb;
+
+}
+
+.creator-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+.creator-content h2 {
+
+    color:
+        var(--green-dark);
+
+    font-size:
+        clamp(30px, 4vw, 43px);
+
+    line-height: 1.15;
+
+    margin:
+        10px 0 25px;
+
+}
+
+.creator-content p {
+
+    color:
+        var(--text-light);
+
+    line-height: 1.8;
+
+}
+
+.creator-name {
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-top: 30px;
+
+}
+
+.creator-name strong {
+
+    color:
+        var(--green-dark);
+
+    font-size: 20px;
+
+}
+
+.creator-name span {
+
+    color:
+        #879287;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+
+}
+
+
+/* ==================================================
+   REDES SOCIALES
+================================================== */
+
+.social-section {
+
+    background:
+        #f4f7f2;
+
+    padding:
+        100px 0;
+
+}
+
+.social-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+    max-width: 900px;
+
+    margin: auto;
+
+}
+
+.social-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    background: white;
+
+    border:
+        1px solid #e1e8df;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    transition: .2s;
+
+}
+
+.social-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(30,60,30,.08);
+
+}
+
+.social-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--green-dark);
+
+    font-weight: 900;
+
+    font-size: 20px;
+
+}
+
+.social-card h3 {
+
+    margin: 0 0 5px;
+
+    color:
+        var(--green-dark);
+
+    font-size: 17px;
+
+}
+
+.social-card p {
+
+    margin: 0;
+
+    color:
+        var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+/* ==================================================
+   CTA
+================================================== */
+
+.about-cta {
+
+    min-height: 400px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            rgba(25,45,28,.9),
+            rgba(25,45,28,.9)
+        ),
+        url("../assets/images/about/garden-cta.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    padding: 80px 20px;
+
+}
+
+.about-cta-content {
+
+    max-width: 750px;
+
+}
+
+.about-cta h2 {
+
+    font-size:
+        clamp(34px, 5vw, 55px);
+
+    line-height: 1.1;
+
+    margin:
+        12px 0 20px;
+
+}
+
+.about-cta p {
+
+    color:
+        #dce6da;
+
+    line-height: 1.7;
+
+}
+
+.about-cta .primary-button {
+
+    background: white;
+
+    color:
+        var(--green-dark);
+
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 1000px) {
+
+    .mission-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .features-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .vision-section .section-container {
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+
+    }
+
+    .social-grid {
+
+        grid-template-columns: 1fr;
+
+        max-width: 600px;
+
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .about-story {
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+    }
+
+    .about-story-image {
+
+        height: 350px;
+
+    }
+
+    .creator-section .section-container {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        justify-items: center;
+
+    }
+
+    .creator-image {
+
+        width: 260px;
+
+        height: 260px;
+
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .mission-grid,
+    .features-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .about-hero {
+
+        min-height: 600px;
+
+    }
+
+    .vision-item {
+
+        grid-template-columns:
+            45px 1fr;
+
+    }
+
+}

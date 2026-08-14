@@ -1,0 +1,1725 @@
+/* ==================================================
+   CONFIGURACIÓN GENERAL
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: #f7faf7;
+
+    color: #26352a;
+
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* ==================================================
+   VARIABLES
+================================================== */
+
+:root {
+
+    --green-dark: #234b2a;
+
+    --green: #3d8b40;
+
+    --green-light: #eaf4e9;
+
+    --green-soft: #f3f8f2;
+
+    --text: #26352a;
+
+    --text-light: #637066;
+
+    --white: #ffffff;
+
+    --border: #dfe8df;
+
+    --shadow:
+        0 8px 25px rgba(30, 70, 35, 0.08);
+
+}
+
+
+/* ==================================================
+   CONTENEDOR
+================================================== */
+
+.section-container {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: auto;
+
+}
+
+
+/* ==================================================
+   NAVBAR
+================================================== */
+
+.navbar {
+
+    width: 100%;
+
+    height: 82px;
+
+    background-color: var(--white);
+
+    border-bottom:
+        1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+.navbar-container {
+
+    width: 92%;
+
+    max-width: 1450px;
+
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+/* LOGO */
+
+.logo {
+
+    flex-shrink: 0;
+
+}
+
+.logo img {
+
+    width: 160px;
+
+    height: auto;
+
+}
+
+
+/* NAVEGACIÓN */
+
+.main-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+
+}
+
+.main-navigation a {
+
+    color: #405245;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease;
+
+}
+
+.main-navigation a:hover {
+
+    color: var(--green);
+
+}
+
+
+/* BUSCADOR */
+
+.search-container {
+
+    margin-left: auto;
+
+    width: 210px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    background-color: #f5f8f5;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+}
+
+.search-container input {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    padding: 0 15px;
+
+    font-size: 14px;
+
+}
+
+.search-container button {
+
+    width: 42px;
+
+    height: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+}
+
+
+/* USUARIO */
+
+.user-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+.login-button {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #3b503f;
+
+    white-space: nowrap;
+
+}
+
+.login-button:hover {
+
+    color: var(--green);
+
+}
+
+.garden-button {
+
+    background-color: var(--green);
+
+    color: white;
+
+    padding:
+        9px 17px;
+
+    border-radius: 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition:
+        background-color 0.2s ease;
+
+}
+
+.garden-button:hover {
+
+    background-color: #2f7134;
+
+}
+
+
+/* FOTO DE USUARIO */
+
+.user-profile {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    border:
+        2px solid #dbe6dc;
+
+    flex-shrink: 0;
+
+}
+
+.user-profile img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero {
+
+    min-height: 570px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        80px 8%;
+
+    background:
+        linear-gradient(
+            110deg,
+            #eef6ed 0%,
+            #f8fbf7 55%,
+            #e5f0e3 100%
+        );
+
+}
+
+.hero-content {
+
+    max-width: 720px;
+
+}
+
+.hero-label {
+
+    display: inline-block;
+
+    color: var(--green);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+
+}
+
+.hero h1 {
+
+    font-size: clamp(
+        42px,
+        5vw,
+        68px
+    );
+
+    line-height: 1.08;
+
+    color: var(--green-dark);
+
+    margin-bottom: 25px;
+
+    letter-spacing: -1.5px;
+
+}
+
+.hero p {
+
+    max-width: 650px;
+
+    color: var(--text-light);
+
+    font-size: 19px;
+
+    line-height: 1.75;
+
+    margin-bottom: 35px;
+
+}
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 15px;
+
+}
+
+.primary-button,
+.secondary-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:
+        13px 23px;
+
+    border-radius: 28px;
+
+    font-weight: 700;
+
+    font-size: 15px;
+
+}
+
+.primary-button {
+
+    background-color: var(--green);
+
+    color: white;
+
+}
+
+.primary-button:hover {
+
+    background-color: #2f7134;
+
+}
+
+.secondary-button {
+
+    color: var(--green);
+
+    border:
+        1px solid var(--green);
+
+    background-color: transparent;
+
+}
+
+.secondary-button:hover {
+
+    background-color: var(--green-light);
+
+}
+
+
+/* ==================================================
+   TÍTULOS DE SECCIÓN
+================================================== */
+
+.section-heading {
+
+    text-align: center;
+
+    max-width: 700px;
+
+    margin:
+        0 auto 45px;
+
+}
+
+.section-label {
+
+    display: block;
+
+    color: var(--green);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 8px;
+
+}
+
+.section-heading h2 {
+
+    color: var(--green-dark);
+
+    font-size: 38px;
+
+    line-height: 1.2;
+
+    margin-bottom: 13px;
+
+}
+
+.section-heading p {
+
+    color: var(--text-light);
+
+    font-size: 16px;
+
+}
+
+
+/* ==================================================
+   PLANTAS DE TEMPORADA
+================================================== */
+
+.seasonal-plants {
+
+    padding:
+        90px 0 70px;
+
+}
+
+
+/* CARRUSEL */
+
+.plants-carousel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+.plants-carousel-track {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 18px;
+
+}
+
+
+/* TARJETA */
+
+.plant-card {
+
+    background-color: white;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+.plant-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(30, 70, 35, 0.12);
+
+}
+
+.plant-image {
+
+    height: 190px;
+
+    position: relative;
+
+    background-color: #e7eee6;
+
+    overflow: hidden;
+
+}
+
+.plant-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+/* RANKING */
+
+.plant-ranking {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 12px;
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: white;
+
+    color: var(--green);
+
+    border-radius: 50%;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 3px 10px
+        rgba(0,0,0,0.12);
+
+}
+
+
+/* CONTENIDO TARJETA */
+
+.plant-card-content {
+
+    padding: 20px;
+
+}
+
+.plant-category {
+
+    color: var(--green);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+}
+
+.plant-card h3 {
+
+    color: var(--green-dark);
+
+    font-size: 22px;
+
+    margin:
+        5px 0 8px;
+
+}
+
+.plant-card p {
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    min-height: 60px;
+
+}
+
+.plant-link {
+
+    display: inline-block;
+
+    margin-top: 12px;
+
+    color: var(--green);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+/* BOTONES CARRUSEL */
+
+.carousel-button {
+
+    position: absolute;
+
+    z-index: 10;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: white;
+
+    color: var(--green-dark);
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.15);
+
+    cursor: pointer;
+
+    font-size: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+.carousel-button:hover {
+
+    background-color: var(--green);
+
+    color: white;
+
+}
+
+.carousel-prev {
+
+    left: -21px;
+
+}
+
+.carousel-next {
+
+    right: -21px;
+
+}
+
+
+/* PIE CARRUSEL */
+
+.carousel-footer {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+}
+
+.carousel-indicators {
+
+    display: flex;
+
+    gap: 6px;
+
+}
+
+.carousel-indicators button {
+
+    width: 7px;
+
+    height: 7px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: #cdd9ce;
+
+    cursor: pointer;
+
+}
+
+.carousel-indicators button.active {
+
+    width: 22px;
+
+    border-radius: 5px;
+
+    background-color: var(--green);
+
+}
+
+
+/* ==================================================
+   ESTACIÓN Y LUNA
+================================================== */
+
+.current-conditions {
+
+    padding:
+        30px 0 90px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+
+}
+
+.info-panel {
+
+    min-height: 220px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+}
+
+.season-panel {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8df,
+            #fffdf5
+        );
+
+}
+
+.moon-panel {
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9edf8,
+            #f8f9fd
+        );
+
+}
+
+.info-panel-icon {
+
+    font-size: 55px;
+
+    flex-shrink: 0;
+
+}
+
+.info-panel-content > span {
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    color: var(--text-light);
+
+    letter-spacing: 1px;
+
+}
+
+.info-panel h2 {
+
+    margin:
+        4px 0 8px;
+
+    color: var(--green-dark);
+
+    font-size: 28px;
+
+}
+
+.info-panel p {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    margin-bottom: 12px;
+
+}
+
+.info-panel a {
+
+    color: var(--green);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+/* ==================================================
+   CONSEJO DEL MOMENTO
+================================================== */
+
+.garden-advice-panel {
+
+    grid-column: 1 / -1;
+
+    display: grid;
+
+    grid-template-columns:
+        180px 1fr auto;
+
+    align-items: center;
+
+    gap: 30px;
+
+    padding: 30px 35px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--green-dark),
+            var(--green)
+        );
+
+    color: white;
+
+}
+
+
+/* ==============================================
+   HORA
+============================================== */
+
+.advice-time {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+.advice-time #currentTime {
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+}
+
+.advice-time #timeOfDay {
+
+    color: #d8e6d6;
+
+    font-size: 13px;
+
+}
+
+
+/* ==============================================
+   CONTENIDO DEL CONSEJO
+============================================== */
+
+.advice-content {
+
+    border-left:
+        1px solid
+        rgba(255,255,255,.20);
+
+    padding-left: 30px;
+
+}
+
+.advice-label {
+
+    display: block;
+
+    color: #c8d9c5;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+.advice-content h2 {
+
+    margin:
+        7px 0 8px;
+
+    color: white;
+
+    font-size: 24px;
+
+}
+
+.advice-content p {
+
+    margin: 0;
+
+    color: #dce8da;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* ==============================================
+   CONTEXTO
+============================================== */
+
+.advice-context {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+.advice-context span {
+
+    padding:
+        8px 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.10);
+
+    color: white;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==============================================
+   RESPONSIVE
+============================================== */
+
+@media (max-width: 800px) {
+
+    .garden-advice-panel {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+    }
+
+
+    .advice-content {
+
+        border-left: none;
+
+        border-top:
+            1px solid
+            rgba(255,255,255,.20);
+
+        padding-left: 0;
+
+        padding-top: 20px;
+
+    }
+
+
+    .advice-context {
+
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+    }
+
+}
+
+/* ==================================================
+   PLANTAS RECOMENDADAS
+================================================== */
+
+.recommended-plants {
+
+    padding:
+        20px 0 100px;
+
+}
+
+.plant-table-container {
+
+    overflow-x: auto;
+
+    border-radius: 15px;
+
+    box-shadow: var(--shadow);
+
+}
+
+.plant-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background-color: white;
+
+}
+
+.plant-table th {
+
+    background-color: var(--green-dark);
+
+    color: white;
+
+    text-align: left;
+
+    padding: 16px;
+
+    font-size: 13px;
+
+}
+
+.plant-table td {
+
+    padding: 17px 16px;
+
+    border-bottom:
+        1px solid #edf1ed;
+
+    font-size: 14px;
+
+    color: var(--text-light);
+
+}
+
+.plant-table tr:last-child td {
+
+    border-bottom: none;
+
+}
+
+.plant-table td:first-child {
+
+    font-weight: 700;
+
+    color: var(--green-dark);
+
+}
+
+.plant-table td a {
+
+    color: var(--green);
+
+    font-weight: 700;
+
+}
+
+
+/* DIFICULTAD */
+
+.difficulty {
+
+    display: inline-block;
+
+    padding:
+        4px 10px;
+
+    border-radius: 15px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+.difficulty.easy {
+
+    background-color: #e5f3e5;
+
+    color: #36723a;
+
+}
+
+.difficulty.medium {
+
+    background-color: #fff2d9;
+
+    color: #936b20;
+
+}
+
+
+/* ==================================================
+   APRENDE
+================================================== */
+
+.learn-section {
+
+    padding:
+        90px 0;
+
+    background-color: #edf5eb;
+
+}
+
+.learn-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+.learn-card {
+
+    padding: 30px;
+
+    background-color: white;
+
+    border-radius: 17px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(30,70,35,.05);
+
+    transition:
+        transform .2s ease;
+
+}
+
+.learn-card:hover {
+
+    transform:
+        translateY(-5px);
+
+}
+
+.learn-icon {
+
+    font-size: 38px;
+
+    margin-bottom: 15px;
+
+}
+
+.learn-card h3 {
+
+    color: var(--green-dark);
+
+    font-size: 21px;
+
+    margin-bottom: 8px;
+
+}
+
+.learn-card p {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    margin-bottom: 15px;
+
+}
+
+.learn-card span {
+
+    color: var(--green);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==================================================
+   MEJORA LA TIERRA
+================================================== */
+
+.soil-section {
+
+    padding:
+        100px 0;
+
+}
+
+.soil-content {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+}
+
+.soil-text h2 {
+
+    color: var(--green-dark);
+
+    font-size: 42px;
+
+    line-height: 1.2;
+
+    margin:
+        10px 0 20px;
+
+}
+
+.soil-text > p {
+
+    color: var(--text-light);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+
+}
+
+.soil-features {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+
+}
+
+.soil-features span {
+
+    color: #526356;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+.soil-video {
+
+    min-height: 350px;
+
+}
+
+.video-placeholder {
+
+    width: 100%;
+
+    height: 350px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcebd9,
+            #bcd3b9
+        );
+
+    border-radius: 20px;
+
+    color: var(--green-dark);
+
+}
+
+.video-placeholder span {
+
+    width: 70px;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    font-size: 25px;
+
+    padding-left: 4px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.1);
+
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.footer {
+
+    background-color: #203c25;
+
+    color: white;
+
+    padding-top: 60px;
+
+}
+
+.footer-container {
+
+    width: 90%;
+
+    max-width: 1250px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr repeat(3, 1fr);
+
+    gap: 50px;
+
+    padding-bottom: 55px;
+
+}
+
+.footer-brand h3 {
+
+    font-size: 27px;
+
+    margin-bottom: 10px;
+
+}
+
+.footer-brand p {
+
+    color: #c9d8ca;
+
+    font-size: 14px;
+
+}
+
+.footer-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+.footer-column h4 {
+
+    margin-bottom: 5px;
+
+    font-size: 15px;
+
+}
+
+.footer-column a {
+
+    color: #c9d8ca;
+
+    font-size: 13px;
+
+}
+
+.footer-column a:hover {
+
+    color: white;
+
+}
+
+.footer-bottom {
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.1);
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: #afc0b1;
+
+    font-size: 12px;
+
+}
+
+
+/* ==================================================
+   MENÚ MÓVIL
+================================================== */
+
+.mobile-menu-button {
+
+    display: none;
+
+    border: none;
+
+    background: none;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 1200px) {
+
+    .main-navigation {
+
+        gap: 15px;
+
+    }
+
+    .search-container {
+
+        width: 170px;
+
+    }
+
+    .login-button {
+
+        display: none;
+
+    }
+
+    .plants-carousel-track {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .main-navigation,
+    .search-container,
+    .user-navigation {
+
+        display: none;
+
+    }
+
+    .mobile-menu-button {
+
+        display: block;
+
+        margin-left: auto;
+
+    }
+
+    .plants-carousel-track {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .current-conditions {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .learn-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .soil-content {
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .hero {
+
+        min-height: 500px;
+
+        padding:
+            60px 7%;
+
+    }
+
+    .hero h1 {
+
+        font-size: 40px;
+
+    }
+
+    .hero p {
+
+        font-size: 16px;
+
+    }
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .plants-carousel-track {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .carousel-button {
+
+        display: none;
+
+    }
+
+    .current-conditions {
+
+        width: 86%;
+
+    }
+
+    .info-panel {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .learn-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .soil-features {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .footer-container {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+}

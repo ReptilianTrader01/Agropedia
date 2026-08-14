@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Agropedia: aprende sobre plantas, jardinería y agricultura. Descubre cómo cultivar, cuidar y mejorar tu jardín.">
+
+    <title>Agropedia | Aprende, cultiva y disfruta tu jardín</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         BARRA DE NAVEGACIÓN
+    =================================================== -->
+
+    <header class="navbar">
+
+        <div class="navbar-container">
+
+
+            <!-- LOGO -->
+
+            <a href="index.html" class="logo">
+
+                <img
+                    src="assets/images/logo.png"
+                    alt="Agropedia">
+
+            </a>
+
+
+            <!-- NAVEGACIÓN PRINCIPAL -->
+
+            <nav class="main-navigation">
+
+                <a href="plantas.html">
+                    Plantas
+                </a>
+
+                <a href="aprende.html">
+                    Aprende
+                </a>
+
+                <a href="tierra.html">
+                    Mejora la tierra
+                </a>
+
+                <a href="nosotros.html">
+                    Nosotros
+                </a>
+
+            </nav>
+
+
+            <!-- BUSCADOR -->
+
+            <div class="search-container">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Buscar..."
+                    aria-label="Buscar en Agropedia">
+
+                <button
+                    type="button"
+                    id="searchButton"
+                    aria-label="Buscar">
+
+                    🔍
+
+                </button>
+
+            </div>
+
+
+            <!-- ACCIONES DEL USUARIO -->
+
+            <div class="user-navigation">
+
+                <a href="login.html" class="login-button">
+                    Iniciar sesión
+                </a>
+
+                <a href="mi-jardin.html" class="garden-button">
+                    Mi jardín
+                </a>
+
+                <a href="perfil.html" class="user-profile">
+
+                    <img
+                        src="assets/images/default-user.png"
+                        alt="Perfil del usuario">
+
+                </a>
+
+            </div>
+
+
+            <!-- BOTÓN PARA MÓVIL -->
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Abrir menú">
+
+                ☰
+
+            </button>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         CONTENIDO PRINCIPAL
+    =================================================== -->
+
+    <main>
+
+
+        <!-- ==================================================
+             HERO
+        =================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+                    🌱 Bienvenido a Agropedia
+                </span>
+
+                <h1>
+                    Aprende, cultiva y disfruta tu jardín
+                </h1>
+
+                <p>
+                    Descubre plantas, aprende a cuidarlas y encuentra
+                    todo lo que necesitas para crear y mantener
+                    el jardín que imaginas.
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="plantas.html"
+                        class="primary-button">
+
+                        Explorar plantas
+
+                    </a>
+
+
+                    <a
+                        href="aprende.html"
+                        class="secondary-button">
+
+                        Quiero aprender
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             PLANTAS POPULARES DE TEMPORADA
+        =================================================== -->
+
+        <section class="seasonal-plants section-container">
+
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    🌿 Descubre
+                </span>
+
+                <h2>
+                    Las favoritas de agosto
+                </h2>
+
+                <p>
+                    Descubre las plantas que más buscan y cultivan
+                    nuestros usuarios durante esta temporada.
+                </p>
+
+            </div>
+
+
+
+            <!-- CARRUSEL -->
+
+            <div class="plants-carousel">
+
+
+                <!-- BOTÓN ANTERIOR -->
+
+                <button
+                    class="carousel-button carousel-prev"
+                    id="carouselPrev"
+                    aria-label="Plantas anteriores">
+
+                    ‹
+
+                </button>
+
+
+
+                <!-- TARJETAS -->
+
+                <div class="plants-carousel-track"
+                     id="plantsCarouselTrack">
+
+
+                    <!-- PLANTA 1 -->
+
+                    <article class="plant-card">
+
+                        <div class="plant-image">
+
+                            <img
+                                src="assets/images/plants/tomate.jpg"
+                                alt="Tomate">
+
+                            <span class="plant-ranking">
+                                #1
+                            </span>
+
+                        </div>
+
+
+                        <div class="plant-card-content">
+
+                            <span class="plant-category">
+                                Hortaliza
+                            </span>
+
+                            <h3>
+                                Tomate
+                            </h3>
+
+                            <p>
+                                Una de las plantas más populares
+                                para cultivar en el jardín.
+                            </p>
+
+                            <a href="planta.html"
+                               class="plant-link">
+
+                                Ver planta →
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- PLANTA 2 -->
+
+                    <article class="plant-card">
+
+                        <div class="plant-image">
+
+                            <img
+                                src="assets/images/plants/chile.jpg"
+                                alt="Chile">
+
+                            <span class="plant-ranking">
+                                #2
+                            </span>
+
+                        </div>
+
+
+                        <div class="plant-card-content">
+
+                            <span class="plant-category">
+                                Hortaliza
+                            </span>
+
+                            <h3>
+                                Chile
+                            </h3>
+
+                            <p>
+                                Una excelente opción para jardines
+                                con buena exposición solar.
+                            </p>
+
+                            <a href="planta.html"
+                               class="plant-link">
+
+                                Ver planta →
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- PLANTA 3 -->
+
+                    <article class="plant-card">
+
+                        <div class="plant-image">
+
+                            <img
+                                src="assets/images/plants/albahaca.jpg"
+                                alt="Albahaca">
+
+                            <span class="plant-ranking">
+                                #3
+                            </span>
+
+                        </div>
+
+
+                        <div class="plant-card-content">
+
+                            <span class="plant-category">
+                                Hierba aromática
+                            </span>
+
+                            <h3>
+                                Albahaca
+                            </h3>
+
+                            <p>
+                                Una planta aromática ideal para
+                                cultivar en casa.
+                            </p>
+
+                            <a href="planta.html"
+                               class="plant-link">
+
+                                Ver planta →
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- PLANTA 4 -->
+
+                    <article class="plant-card">
+
+                        <div class="plant-image">
+
+                            <img
+                                src="assets/images/plants/pepino.jpg"
+                                alt="Pepino">
+
+                            <span class="plant-ranking">
+                                #4
+                            </span>
+
+                        </div>
+
+
+                        <div class="plant-card-content">
+
+                            <span class="plant-category">
+                                Hortaliza
+                            </span>
+
+                            <h3>
+                                Pepino
+                            </h3>
+
+                            <p>
+                                De crecimiento rápido y adecuado
+                                para temporadas cálidas.
+                            </p>
+
+                            <a href="planta.html"
+                               class="plant-link">
+
+                                Ver planta →
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- PLANTA 5 -->
+
+                    <article class="plant-card">
+
+                        <div class="plant-image">
+
+                            <img
+                                src="assets/images/plants/calabaza.jpg"
+                                alt="Calabaza">
+
+                            <span class="plant-ranking">
+                                #5
+                            </span>
+
+                        </div>
+
+
+                        <div class="plant-card-content">
+
+                            <span class="plant-category">
+                                Hortaliza
+                            </span>
+
+                            <h3>
+                                Calabaza
+                            </h3>
+
+                            <p>
+                                Una opción interesante para huertos
+                                y jardines con espacio suficiente.
+                            </p>
+
+                            <a href="planta.html"
+                               class="plant-link">
+
+                                Ver planta →
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+
+
+                <!-- BOTÓN SIGUIENTE -->
+
+                <button
+                    class="carousel-button carousel-next"
+                    id="carouselNext"
+                    aria-label="Siguientes plantas">
+
+                    ›
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- INFORMACIÓN DEL MES -->
+
+            <div class="carousel-footer">
+
+                <span>
+                    Agosto 2026
+                </span>
+
+                <div class="carousel-indicators">
+
+                    <button class="active"></button>
+                    <button></button>
+                    <button></button>
+                    <button></button>
+                    <button></button>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+<!-- ==================================================
+     ESTACIÓN, FASE LUNAR Y CONSEJO DEL MOMENTO
+================================================== -->
+
+<section class="current-conditions section-container">
+
+
+    <!-- ==============================================
+         ESTACIÓN
+    =============================================== -->
+
+    <article class="info-panel season-panel">
+
+        <div class="info-panel-icon">
+            ☀️
+        </div>
+
+        <div class="info-panel-content">
+
+            <span>
+                ESTACIÓN ACTUAL
+            </span>
+
+            <h2>
+                Verano
+            </h2>
+
+            <p>
+                Conoce qué plantas se adaptan mejor
+                a las condiciones de esta temporada.
+            </p>
+
+            <a href="calendario.html">
+                Ver calendario →
+            </a>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- ==============================================
+         FASE LUNAR
+    =============================================== -->
+
+    <article class="info-panel moon-panel">
+
+        <div class="info-panel-icon">
+            🌙
+        </div>
+
+        <div class="info-panel-content">
+
+            <span>
+                FASE LUNAR
+            </span>
+
+            <h2>
+                Luna creciente
+            </h2>
+
+            <p>
+                Consulta las recomendaciones de cultivo
+                asociadas a la fase lunar actual.
+            </p>
+
+            <a href="calendario.html">
+                Ver recomendaciones →
+            </a>
+
+        </div>
+
+    </article>
+
+
+
+    <!-- ==============================================
+         CONSEJO DEL MOMENTO
+    =============================================== -->
+
+    <article class="info-panel garden-advice-panel">
+
+        <!-- HORA -->
+
+        <div class="advice-time">
+
+            <span id="currentTime">
+                20:00
+            </span>
+
+            <span id="timeOfDay">
+                🌙 Noche
+            </span>
+
+        </div>
+
+
+        <!-- CONSEJO -->
+
+        <div class="advice-content">
+
+            <span class="advice-label">
+                🌱 CONSEJO DE AGROPEDIA
+            </span>
+
+            <h2 id="gardenAdviceTitle">
+                Revisa tus plantas antes de la noche
+            </h2>
+
+            <p id="gardenAdviceText">
+                La temperatura comienza a descender.
+                Comprueba que tus plantas estén preparadas
+                para pasar la noche.
+            </p>
+
+        </div>
+
+    </article>
+
+
+</section>
+
+
+
+        <!-- ==================================================
+             PLANTAS RECOMENDADAS
+        =================================================== -->
+
+        <section class="recommended-plants section-container">
+
+
+            <div class="section-heading">
+
+                <span class="section-label">
+                    🌱 Para esta época
+                </span>
+
+                <h2>
+                    ¿Qué puedes cultivar ahora?
+                </h2>
+
+                <p>
+                    Plantas que pueden ser adecuadas para cultivar
+                    durante esta época del año.
+                </p>
+
+            </div>
+
+
+
+            <div class="plant-table-container">
+
+                <table class="plant-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Planta
+                            </th>
+
+                            <th>
+                                Tipo
+                            </th>
+
+                            <th>
+                                Siembra
+                            </th>
+
+                            <th>
+                                Cosecha
+                            </th>
+
+                            <th>
+                                Dificultad
+                            </th>
+
+                            <th>
+                                Información
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                🍅 Tomate
+                            </td>
+
+                            <td>
+                                Hortaliza
+                            </td>
+
+                            <td>
+                                Primavera - Verano
+                            </td>
+
+                            <td>
+                                60 - 90 días
+                            </td>
+
+                            <td>
+                                <span class="difficulty medium">
+                                    Media
+                                </span>
+                            </td>
+
+                            <td>
+                                <a href="planta.html">
+                                    Ver
+                                </a>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                🌶️ Chile
+                            </td>
+
+                            <td>
+                                Hortaliza
+                            </td>
+
+                            <td>
+                                Primavera - Verano
+                            </td>
+
+                            <td>
+                                70 - 100 días
+                            </td>
+
+                            <td>
+                                <span class="difficulty medium">
+                                    Media
+                                </span>
+                            </td>
+
+                            <td>
+                                <a href="planta.html">
+                                    Ver
+                                </a>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                🥒 Pepino
+                            </td>
+
+                            <td>
+                                Hortaliza
+                            </td>
+
+                            <td>
+                                Primavera - Verano
+                            </td>
+
+                            <td>
+                                50 - 70 días
+                            </td>
+
+                            <td>
+                                <span class="difficulty easy">
+                                    Fácil
+                                </span>
+                            </td>
+
+                            <td>
+                                <a href="planta.html">
+                                    Ver
+                                </a>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                🌿 Albahaca
+                            </td>
+
+                            <td>
+                                Aromática
+                            </td>
+
+                            <td>
+                                Primavera - Verano
+                            </td>
+
+                            <td>
+                                30 - 60 días
+                            </td>
+
+                            <td>
+                                <span class="difficulty easy">
+                                    Fácil
+                                </span>
+                            </td>
+
+                            <td>
+                                <a href="planta.html">
+                                    Ver
+                                </a>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ==================================================
+             APRENDE
+        =================================================== -->
+
+        <section class="learn-section">
+
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        📚 Aprende
+                    </span>
+
+                    <h2>
+                        Aprende a cuidar tu jardín
+                    </h2>
+
+                    <p>
+                        Encuentra cursos, videos, guías e imágenes
+                        para mejorar tus conocimientos.
+                    </p>
+
+                </div>
+
+
+
+                <div class="learn-grid">
+
+
+                    <a href="cursos.html"
+                       class="learn-card">
+
+                        <div class="learn-icon">
+                            🎓
+                        </div>
+
+                        <h3>
+                            Cursos
+                        </h3>
+
+                        <p>
+                            Aprende paso a paso sobre jardinería
+                            y cultivo.
+                        </p>
+
+                        <span>
+                            Explorar cursos →
+                        </span>
+
+                    </a>
+
+
+
+                    <a href="videos.html"
+                       class="learn-card">
+
+                        <div class="learn-icon">
+                            ▶️
+                        </div>
+
+                        <h3>
+                            Videos
+                        </h3>
+
+                        <p>
+                            Tutoriales y contenido práctico
+                            para aprender.
+                        </p>
+
+                        <span>
+                            Ver videos →
+                        </span>
+
+                    </a>
+
+
+
+                    <a href="guias.html"
+                       class="learn-card">
+
+                        <div class="learn-icon">
+                            📖
+                        </div>
+
+                        <h3>
+                            Guías
+                        </h3>
+
+                        <p>
+                            Información organizada para ayudarte
+                            en cada etapa.
+                        </p>
+
+                        <span>
+                            Leer guías →
+                        </span>
+
+                    </a>
+
+
+
+                    <a href="imagenes.html"
+                       class="learn-card">
+
+                        <div class="learn-icon">
+                            🖼️
+                        </div>
+
+                        <h3>
+                            Imágenes
+                        </h3>
+
+                        <p>
+                            Aprende a reconocer plantas, plagas,
+                            enfermedades y más.
+                        </p>
+
+                        <span>
+                            Ver imágenes →
+                        </span>
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             MEJORA LA TIERRA
+        =================================================== -->
+
+        <section class="soil-section section-container">
+
+
+            <div class="soil-content">
+
+
+                <div class="soil-text">
+
+                    <span class="section-label">
+                        🌎 El suelo es vida
+                    </span>
+
+                    <h2>
+                        Mejora la tierra de tu jardín
+                    </h2>
+
+                    <p>
+                        Aprende cómo funciona el suelo, qué nutrientes
+                        necesitan tus plantas y cómo puedes mejorar
+                        sus condiciones de forma adecuada.
+                    </p>
+
+
+                    <div class="soil-features">
+
+                        <span>
+                            ✓ Nutrientes
+                        </span>
+
+                        <span>
+                            ✓ Tipos de suelo
+                        </span>
+
+                        <span>
+                            ✓ Compostaje
+                        </span>
+
+                        <span>
+                            ✓ Materia orgánica
+                        </span>
+
+                    </div>
+
+
+                    <a href="tierra.html"
+                       class="primary-button">
+
+                        Aprender sobre el suelo
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="soil-video">
+
+                    <div class="video-placeholder">
+
+                        <span>
+                            ▶
+                        </span>
+
+                        <p>
+                            Video sobre mejora del suelo
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==================================================
+         FOOTER
+    =================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <h3>
+                    Agropedia
+                </h3>
+
+                <p>
+                    Aprende, cultiva y disfruta tu jardín.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Explora
+                </h4>
+
+                <a href="plantas.html">
+                    Plantas
+                </a>
+
+                <a href="aprende.html">
+                    Aprende
+                </a>
+
+                <a href="tierra.html">
+                    Mejora la tierra
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Agropedia
+                </h4>
+
+                <a href="nosotros.html">
+                    Nosotros
+                </a>
+
+                <a href="contacto.html">
+                    Contacto
+                </a>
+
+                <a href="login.html">
+                    Iniciar sesión
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Síguenos
+                </h4>
+
+                <a href="#">
+                    YouTube
+                </a>
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Agropedia. Todos los derechos reservados.
+            </p>
+
+        </div>
+
+
+    </footer>
+
+
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

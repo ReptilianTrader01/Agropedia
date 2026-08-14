@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Aprende sobre plantas, jardinería, cultivo, suelo y cuidados con los recursos educativos de Agropedia."
+    >
+
+    <title>Aprende | Agropedia</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/aprende.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         NAVBAR
+    =================================================== -->
+
+    <header class="navbar">
+
+        <div class="navbar-container">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+
+                <img
+                    src="assets/images/logo.png"
+                    alt="Agropedia"
+                >
+
+            </a>
+
+
+            <!-- NAVEGACIÓN -->
+
+            <nav class="main-navigation">
+
+                <a href="plantas.html">
+                    Plantas
+                </a>
+
+                <a
+                    href="aprende.html"
+                    class="active"
+                >
+                    Aprende
+                </a>
+
+                <a href="tierra.html">
+                    Mejora la tierra
+                </a>
+
+                <a href="nosotros.html">
+                    Nosotros
+                </a>
+
+            </nav>
+
+
+            <!-- BUSCADOR -->
+
+            <div class="search-container">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Buscar..."
+                    aria-label="Buscar en Agropedia"
+                >
+
+                <button
+                    type="button"
+                    id="searchButton"
+                >
+                    🔍
+                </button>
+
+            </div>
+
+
+            <!-- USUARIO -->
+
+            <div class="user-navigation">
+
+                <a
+                    href="login.html"
+                    class="login-button"
+                >
+                    Iniciar sesión
+                </a>
+
+                <a
+                    href="mi-jardin.html"
+                    class="garden-button"
+                >
+                    Mi jardín
+                </a>
+
+                <a
+                    href="perfil.html"
+                    class="user-profile"
+                >
+
+                    <img
+                        src="assets/images/default-user.png"
+                        alt="Perfil del usuario"
+                    >
+
+                </a>
+
+            </div>
+
+
+            <!-- MENÚ MÓVIL -->
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Abrir menú"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         CONTENIDO
+    =================================================== -->
+
+    <main>
+
+
+        <!-- ==================================================
+             HERO
+        =================================================== -->
+
+        <section class="learn-hero">
+
+            <div class="learn-hero-overlay"></div>
+
+            <div class="learn-hero-content">
+
+                <span class="section-label">
+                    📚 Centro de aprendizaje
+                </span>
+
+                <h1>
+                    Aprende a cultivar.
+                </h1>
+
+                <p>
+                    Descubre conocimientos, técnicas y consejos
+                    para cuidar tus plantas y convertirte en un
+                    mejor jardinero.
+                </p>
+
+
+                <!-- BUSCADOR -->
+
+                <div class="learn-search">
+
+                    <input
+                        type="search"
+                        id="learnSearch"
+                        placeholder="¿Qué quieres aprender?"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        id="learnSearchButton"
+                    >
+                        🔍 Buscar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             CATEGORÍAS
+        =================================================== -->
+
+        <section class="learn-categories">
+
+            <div class="section-container">
+
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        🌱 Explora
+                    </span>
+
+                    <h2>
+                        ¿Qué quieres aprender?
+                    </h2>
+
+                    <p>
+                        Encuentra contenido organizado según
+                        aquello que quieres mejorar.
+                    </p>
+
+                </div>
+
+
+                <div class="category-grid">
+
+
+                    <!-- CULTIVO -->
+
+                    <a
+                        href="#cultivo"
+                        class="category-card"
+                        data-category="cultivo"
+                    >
+
+                        <div class="category-icon">
+                            🌱
+                        </div>
+
+                        <h3>
+                            Cultivo
+                        </h3>
+
+                        <p>
+                            Aprende desde la siembra hasta
+                            la cosecha.
+                        </p>
+
+                        <span>
+                            Explorar →
+                        </span>
+
+                    </a>
+
+
+
+                    <!-- CUIDADOS -->
+
+                    <a
+                        href="#cuidados"
+                        class="category-card"
+                        data-category="cuidados"
+                    >
+
+                        <div class="category-icon">
+                            💧
+                        </div>
+
+                        <h3>
+                            Cuidados
+                        </h3>
+
+                        <p>
+                            Riego, poda, iluminación y
+                            mantenimiento.
+                        </p>
+
+                        <span>
+                            Explorar →
+                        </span>
+
+                    </a>
+
+
+
+                    <!-- SUELO -->
+
+                    <a
+                        href="tierra.html"
+                        class="category-card"
+                        data-category="suelo"
+                    >
+
+                        <div class="category-icon">
+                            🌎
+                        </div>
+
+                        <h3>
+                            Suelo
+                        </h3>
+
+                        <p>
+                            Conoce la tierra y aprende
+                            cómo mejorarla.
+                        </p>
+
+                        <span>
+                            Explorar →
+                        </span>
+
+                    </a>
+
+
+
+                    <!-- PLAGAS -->
+
+                    <a
+                        href="#plagas"
+                        class="category-card"
+                        data-category="plagas"
+                    >
+
+                        <div class="category-icon">
+                            🐛
+                        </div>
+
+                        <h3>
+                            Plagas
+                        </h3>
+
+                        <p>
+                            Aprende a identificar y prevenir
+                            las plagas más comunes.
+                        </p>
+
+                        <span>
+                            Explorar →
+                        </span>
+
+                    </a>
+
+
+
+                    <!-- REPRODUCCIÓN -->
+
+                    <a
+                        href="#reproduccion"
+                        class="category-card"
+                        data-category="reproduccion"
+                    >
+
+                        <div class="category-icon">
+                            🌿
+                        </div>
+
+                        <h3>
+                            Reproducción
+                        </h3>
+
+                        <p>
+                            Descubre cómo reproducir tus
+                            plantas.
+                        </p>
+
+                        <span>
+                            Explorar →
+                        </span>
+
+                    </a>
+
+
+
+                    <!-- PODA -->
+
+                    <a
+                        href="#poda"
+                        class="category-card"
+                        data-category="poda"
+                    >
+
+                        <div class="category-icon">
+                            ✂️
+                        </div>
+
+                        <h3>
+                            Poda
+                        </h3>
+
+                        <p>
+                            Técnicas y momentos adecuados
+                            para podar.
+                        </p>
+
+                        <span>
+                            Explorar →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             CURSOS
+        =================================================== -->
+
+        <section
+            class="courses-section"
+            id="cursos"
+        >
+
+            <div class="section-container">
+
+
+                <div class="section-heading heading-with-link">
+
+                    <div>
+
+                        <span class="section-label">
+                            🎓 Formación
+                        </span>
+
+                        <h2>
+                            Cursos destacados
+                        </h2>
+
+                        <p>
+                            Aprende paso a paso con contenidos
+                            organizados por niveles.
+                        </p>
+
+                    </div>
+
+                    <a href="#">
+                        Ver todos los cursos →
+                    </a>
+
+                </div>
+
+
+                <div class="course-grid">
+
+
+                    <!-- CURSO 1 -->
+
+                    <article
+                        class="course-card"
+                        data-search="curso jardineria principiantes plantas"
+                    >
+
+                        <div class="course-image">
+
+                            <img
+                                src="assets/images/learn/course-beginner.jpg"
+                                alt="Curso de jardinería para principiantes"
+                                loading="lazy"
+                            >
+
+                            <span class="course-level">
+                                Principiante
+                            </span>
+
+                        </div>
+
+
+                        <div class="course-content">
+
+                            <span class="course-category">
+                                🌱 Jardinería
+                            </span>
+
+                            <h3>
+                                Introducción a la jardinería
+                            </h3>
+
+                            <p>
+                                Aprende los conceptos básicos
+                                para comenzar tu propio jardín.
+                            </p>
+
+                            <div class="course-meta">
+
+                                <span>
+                                    📚 8 lecciones
+                                </span>
+
+                                <span>
+                                    ⏱️ 2 h
+                                </span>
+
+                            </div>
+
+
+                            <a href="#">
+                                Ver curso →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- CURSO 2 -->
+
+                    <article
+                        class="course-card"
+                        data-search="curso suelo tierra fertilidad"
+                    >
+
+                        <div class="course-image">
+
+                            <img
+                                src="assets/images/learn/course-soil.jpg"
+                                alt="Curso sobre suelo"
+                                loading="lazy"
+                            >
+
+                            <span class="course-level">
+                                Principiante
+                            </span>
+
+                        </div>
+
+
+                        <div class="course-content">
+
+                            <span class="course-category">
+                                🌎 Suelo
+                            </span>
+
+                            <h3>
+                                Conociendo el suelo
+                            </h3>
+
+                            <p>
+                                Aprende a identificar los tipos
+                                de suelo y sus características.
+                            </p>
+
+                            <div class="course-meta">
+
+                                <span>
+                                    📚 6 lecciones
+                                </span>
+
+                                <span>
+                                    ⏱️ 1.5 h
+                                </span>
+
+                            </div>
+
+
+                            <a href="#">
+                                Ver curso →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- CURSO 3 -->
+
+                    <article
+                        class="course-card"
+                        data-search="curso huerto hortalizas cultivo"
+                    >
+
+                        <div class="course-image">
+
+                            <img
+                                src="assets/images/learn/course-vegetables.jpg"
+                                alt="Curso de cultivo de hortalizas"
+                                loading="lazy"
+                            >
+
+                            <span class="course-level">
+                                Intermedio
+                            </span>
+
+                        </div>
+
+
+                        <div class="course-content">
+
+                            <span class="course-category">
+                                🥕 Hortalizas
+                            </span>
+
+                            <h3>
+                                Crea tu huerto
+                            </h3>
+
+                            <p>
+                                Aprende a planificar y comenzar
+                                un pequeño huerto en casa.
+                            </p>
+
+                            <div class="course-meta">
+
+                                <span>
+                                    📚 10 lecciones
+                                </span>
+
+                                <span>
+                                    ⏱️ 3 h
+                                </span>
+
+                            </div>
+
+
+                            <a href="#">
+                                Ver curso →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             VIDEOS
+        =================================================== -->
+
+        <section
+            class="videos-section"
+            id="videos"
+        >
+
+            <div class="section-container">
+
+
+                <div class="section-heading heading-with-link">
+
+                    <div>
+
+                        <span class="section-label">
+                            🎥 Contenido audiovisual
+                        </span>
+
+                        <h2>
+                            Videos para aprender
+                        </h2>
+
+                        <p>
+                            Aprende viendo cómo se realizan
+                            diferentes técnicas de cultivo.
+                        </p>
+
+                    </div>
+
+                    <a href="#">
+                        Ver todos los videos →
+                    </a>
+
+                </div>
+
+
+                <div class="video-grid">
+
+
+                    <!-- VIDEO 1 -->
+
+                    <article
+                        class="video-card"
+                        data-search="video sembrar semillas germinar"
+                    >
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="assets/images/learn/video-seeds.jpg"
+                                alt="Cómo sembrar semillas"
+                                loading="lazy"
+                            >
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                            <span>
+                                08:42
+                            </span>
+
+                        </div>
+
+
+                        <div class="video-content">
+
+                            <span>
+                                🌱 Cultivo
+                            </span>
+
+                            <h3>
+                                Cómo sembrar una semilla correctamente
+                            </h3>
+
+                            <p>
+                                Aprende las bases para conseguir
+                                una buena germinación.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- VIDEO 2 -->
+
+                    <article
+                        class="video-card"
+                        data-search="video poda plantas poda correcta"
+                    >
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="assets/images/learn/video-pruning.jpg"
+                                alt="Cómo podar una planta"
+                                loading="lazy"
+                            >
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                            <span>
+                                11:25
+                            </span>
+
+                        </div>
+
+
+                        <div class="video-content">
+
+                            <span>
+                                ✂️ Poda
+                            </span>
+
+                            <h3>
+                                Cómo podar tus plantas
+                            </h3>
+
+                            <p>
+                                Conoce las técnicas básicas y
+                                los errores más comunes.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- VIDEO 3 -->
+
+                    <article
+                        class="video-card"
+                        data-search="video compost compostaje suelo"
+                    >
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="assets/images/learn/video-compost.jpg"
+                                alt="Cómo hacer compost"
+                                loading="lazy"
+                            >
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                            <span>
+                                13:10
+                            </span>
+
+                        </div>
+
+
+                        <div class="video-content">
+
+                            <span>
+                                ♻️ Suelo
+                            </span>
+
+                            <h3>
+                                Cómo comenzar tu propio compost
+                            </h3>
+
+                            <p>
+                                Convierte residuos orgánicos en
+                                materia útil para tu jardín.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- VIDEO 4 -->
+
+                    <article
+                        class="video-card"
+                        data-search="video riego plantas agua"
+                    >
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="assets/images/learn/video-watering.jpg"
+                                alt="Cómo regar las plantas"
+                                loading="lazy"
+                            >
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                            <span>
+                                06:54
+                            </span>
+
+                        </div>
+
+
+                        <div class="video-content">
+
+                            <span>
+                                💧 Cuidados
+                            </span>
+
+                            <h3>
+                                Cómo regar correctamente
+                            </h3>
+
+                            <p>
+                                Aprende cuándo y cuánto regar
+                                tus plantas.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             ARTÍCULOS
+        =================================================== -->
+
+        <section
+            class="articles-section"
+            id="articulos"
+        >
+
+            <div class="section-container">
+
+
+                <div class="section-heading heading-with-link">
+
+                    <div>
+
+                        <span class="section-label">
+                            📖 Lectura
+                        </span>
+
+                        <h2>
+                            Guías y artículos
+                        </h2>
+
+                        <p>
+                            Información práctica para consultar
+                            cuando la necesites.
+                        </p>
+
+                    </div>
+
+                    <a href="#">
+                        Ver todos los artículos →
+                    </a>
+
+                </div>
+
+
+                <div class="article-grid">
+
+
+                    <!-- ARTÍCULO 1 -->
+
+                    <article
+                        class="article-card"
+                        data-search="articulo plantas interior luz"
+                    >
+
+                        <div class="article-image">
+
+                            <img
+                                src="assets/images/learn/article-indoor.jpg"
+                                alt="Plantas de interior"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="article-content">
+
+                            <span>
+                                🪴 Plantas de interior
+                            </span>
+
+                            <h3>
+                                Cómo elegir el lugar adecuado
+                                para una planta
+                            </h3>
+
+                            <p>
+                                La iluminación es uno de los
+                                factores más importantes para
+                                cualquier planta.
+                            </p>
+
+                            <a href="#">
+                                Leer artículo →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- ARTÍCULO 2 -->
+
+                    <article
+                        class="article-card"
+                        data-search="articulo plagas insectos plantas"
+                    >
+
+                        <div class="article-image">
+
+                            <img
+                                src="assets/images/learn/article-pests.jpg"
+                                alt="Plagas en plantas"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="article-content">
+
+                            <span>
+                                🐛 Plagas
+                            </span>
+
+                            <h3>
+                                Cómo identificar una plaga
+                                a tiempo
+                            </h3>
+
+                            <p>
+                                Aprende a reconocer algunas de
+                                las señales más comunes.
+                            </p>
+
+                            <a href="#">
+                                Leer artículo →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- ARTÍCULO 3 -->
+
+                    <article
+                        class="article-card"
+                        data-search="articulo reproduccion esquejes plantas"
+                    >
+
+                        <div class="article-image">
+
+                            <img
+                                src="assets/images/learn/article-cuttings.jpg"
+                                alt="Reproducción mediante esquejes"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="article-content">
+
+                            <span>
+                                🌿 Reproducción
+                            </span>
+
+                            <h3>
+                                Reproduce tus plantas
+                                mediante esquejes
+                            </h3>
+
+                            <p>
+                                Una de las formas más sencillas
+                                de obtener nuevas plantas.
+                            </p>
+
+                            <a href="#">
+                                Leer artículo →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             CONSEJO
+        =================================================== -->
+
+        <section class="tip-section">
+
+            <div class="tip-container">
+
+                <div class="tip-icon">
+                    💡
+                </div>
+
+
+                <div>
+
+                    <span>
+                        CONSEJO DE AGROPEDIA
+                    </span>
+
+                    <h2>
+                        No riegues por rutina.
+                    </h2>
+
+                    <p>
+                        Antes de regar, comprueba primero la humedad
+                        del suelo. Cada planta y cada ambiente tienen
+                        necesidades diferentes.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             CTA
+        =================================================== -->
+
+        <section class="learn-cta">
+
+            <div class="learn-cta-content">
+
+                <span class="section-label">
+                    🌱 Sigue aprendiendo
+                </span>
+
+                <h2>
+                    El mejor jardinero nunca deja de aprender.
+                </h2>
+
+                <p>
+                    Explora nuestras plantas y descubre qué puedes
+                    cultivar en tu propio jardín.
+                </p>
+
+                <a
+                    href="plantas.html"
+                    class="primary-button"
+                >
+                    Explorar plantas →
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==================================================
+         FOOTER
+    =================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <h3>
+                    Agropedia
+                </h3>
+
+                <p>
+                    Aprende, cultiva y disfruta tu jardín.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Explora
+                </h4>
+
+                <a href="plantas.html">
+                    Plantas
+                </a>
+
+                <a href="aprende.html">
+                    Aprende
+                </a>
+
+                <a href="tierra.html">
+                    Mejora la tierra
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Agropedia
+                </h4>
+
+                <a href="nosotros.html">
+                    Nosotros
+                </a>
+
+                <a href="contacto.html">
+                    Contacto
+                </a>
+
+                <a href="login.html">
+                    Iniciar sesión
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Síguenos
+                </h4>
+
+                <a href="#">
+                    YouTube
+                </a>
+
+                <a href="#">
+                    Instagram
+                </a>
+
+                <a href="#">
+                    Facebook
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Agropedia. Todos los derechos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script src="js/main.js"></script>
+    <script src="js/aprende.js"></script>
+
+</body>
+
+</html>

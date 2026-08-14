@@ -1,0 +1,785 @@
+/* ==================================================
+   HERO
+================================================== */
+
+.plants-hero {
+
+    background:
+        linear-gradient(
+            rgba(28, 67, 34, .88),
+            rgba(28, 67, 34, .88)
+        );
+
+    color: white;
+
+    padding:
+        100px 20px;
+
+    text-align: center;
+
+}
+
+.plants-hero-content {
+
+    max-width: 850px;
+
+    margin: auto;
+
+}
+
+.plants-hero .section-label {
+
+    color: #d7ebd2;
+
+}
+
+.plants-hero h1 {
+
+    font-size:
+        clamp(40px, 6vw, 68px);
+
+    line-height: 1.05;
+
+    margin:
+        15px 0;
+
+}
+
+.plants-hero p {
+
+    max-width: 600px;
+
+    margin:
+        0 auto 35px;
+
+    color: #dce9dc;
+
+    line-height: 1.7;
+
+}
+
+
+/* ==================================================
+   BUSCADOR
+================================================== */
+
+.plants-search {
+
+    position: relative;
+
+    display: flex;
+
+    max-width: 650px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 6px;
+
+    border-radius: 50px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.15);
+
+}
+
+.plants-search input {
+
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    padding:
+        15px 20px;
+
+    border-radius: 40px;
+
+    font-size: 14px;
+
+}
+
+.plants-search button {
+
+    border: none;
+
+    background:
+        var(--green);
+
+    color: white;
+
+    border-radius: 40px;
+
+    padding:
+        0 25px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+/* SUGERENCIAS */
+
+.search-suggestions {
+
+    position: absolute;
+
+    top: calc(100% + 8px);
+
+    left: 0;
+
+    right: 0;
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.15);
+
+    z-index: 20;
+
+    display: none;
+
+    text-align: left;
+
+}
+
+.search-suggestions.active {
+
+    display: block;
+
+}
+
+.search-suggestion {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px 18px;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+}
+
+.search-suggestion:hover {
+
+    background:
+        var(--green-soft);
+
+}
+
+.search-suggestion img {
+
+    width: 45px;
+
+    height: 45px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+}
+
+
+/* ==================================================
+   CATÁLOGO
+================================================== */
+
+.plants-catalog {
+
+    padding:
+        90px 0;
+
+}
+
+.catalog-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 30px;
+
+}
+
+.catalog-header h2 {
+
+    font-size: 38px;
+
+    color: var(--green-dark);
+
+    margin:
+        5px 0;
+
+}
+
+.catalog-header p {
+
+    color: var(--text-light);
+
+}
+
+.plant-count {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 6px;
+
+    color: var(--text-light);
+
+}
+
+.plant-count strong {
+
+    font-size: 30px;
+
+    color: var(--green);
+
+}
+
+
+/* ==================================================
+   CATEGORÍAS
+================================================== */
+
+.categories-container {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-bottom: 25px;
+
+}
+
+.category-button {
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    color: var(--text-light);
+
+    border-radius: 30px;
+
+    padding:
+        9px 17px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    transition: .2s;
+
+}
+
+.category-button:hover {
+
+    border-color:
+        var(--green);
+
+    color:
+        var(--green);
+
+}
+
+.category-button.active {
+
+    background:
+        var(--green);
+
+    border-color:
+        var(--green);
+
+    color: white;
+
+}
+
+
+/* ==================================================
+   FILTROS
+================================================== */
+
+.filters-container {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    align-items: end;
+
+    gap: 15px;
+
+    padding:
+        20px;
+
+    background:
+        #f5f8f4;
+
+    border-radius: 15px;
+
+    margin-bottom: 40px;
+
+}
+
+.filter-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+.filter-group label {
+
+    font-size: 11px;
+
+    color: var(--text-light);
+
+    font-weight: 700;
+
+}
+
+.filter-group select {
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    padding:
+        9px 12px;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    color: var(--text);
+
+}
+
+.clear-filters {
+
+    margin-left: auto;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--green);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+/* ==================================================
+   GRID
+================================================== */
+
+.plants-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 25px;
+
+}
+
+
+/* ==================================================
+   TARJETA
+================================================== */
+
+.plant-card {
+
+    background: white;
+
+    border:
+        1px solid #e7ece6;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    transition:
+        transform .25s,
+        box-shadow .25s;
+
+}
+
+.plant-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(30,70,35,.12);
+
+}
+
+.plant-card a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+/* IMAGEN */
+
+.plant-card-image {
+
+    position: relative;
+
+    height: 240px;
+
+    overflow: hidden;
+
+}
+
+.plant-card-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform .4s;
+
+}
+
+.plant-card:hover
+.plant-card-image img {
+
+    transform:
+        scale(1.05);
+
+}
+
+.plant-card-category {
+
+    position: absolute;
+
+    top: 15px;
+
+    left: 15px;
+
+    padding:
+        6px 11px;
+
+    background:
+        rgba(255,255,255,.92);
+
+    color:
+        var(--green-dark);
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+/* CONTENIDO */
+
+.plant-card-content {
+
+    padding: 22px;
+
+}
+
+.plant-card h3 {
+
+    color:
+        var(--green-dark);
+
+    font-size: 22px;
+
+    margin-bottom: 3px;
+
+}
+
+.scientific-name {
+
+    color:
+        #8a948a;
+
+    font-size: 12px;
+
+    margin-bottom: 12px;
+
+}
+
+.plant-card-description {
+
+    color:
+        var(--text-light);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    min-height: 63px;
+
+}
+
+
+/* TAGS */
+
+.plant-card .plant-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin:
+        15px 0;
+
+}
+
+.plant-card .plant-tags span {
+
+    padding:
+        5px 8px;
+
+    background:
+        var(--green-soft);
+
+    color:
+        var(--green);
+
+    border-radius: 5px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+/* LINK */
+
+.view-plant {
+
+    display: block;
+
+    color:
+        var(--green);
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+}
+
+
+/* ==================================================
+   SIN RESULTADOS
+================================================== */
+
+.no-results {
+
+    display: none;
+
+    text-align: center;
+
+    padding:
+        70px 20px;
+
+}
+
+.no-results span {
+
+    font-size: 50px;
+
+}
+
+.no-results h3 {
+
+    color:
+        var(--green-dark);
+
+    margin:
+        15px 0 5px;
+
+}
+
+.no-results p {
+
+    color:
+        var(--text-light);
+
+}
+
+
+/* ==================================================
+   PAGINACIÓN
+================================================== */
+
+.pagination {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 60px;
+
+}
+
+.pagination button {
+
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    color:
+        var(--text-light);
+
+}
+
+.pagination button.active {
+
+    background:
+        var(--green);
+
+    border-color:
+        var(--green);
+
+    color: white;
+
+}
+
+.pagination button:disabled {
+
+    opacity: .4;
+
+    cursor: not-allowed;
+
+}
+
+.pagination span {
+
+    color:
+        var(--text-light);
+
+}
+
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 1100px) {
+
+    .plants-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .plants-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .catalog-header {
+
+        align-items: start;
+
+    }
+
+}
+
+@media (max-width: 550px) {
+
+    .plants-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .catalog-header {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+    .plants-search {
+
+        flex-direction: column;
+
+        border-radius: 15px;
+
+    }
+
+    .plants-search button {
+
+        padding: 13px;
+
+    }
+
+    .clear-filters {
+
+        margin-left: 0;
+
+    }
+
+}
