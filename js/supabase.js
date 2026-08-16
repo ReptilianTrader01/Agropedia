@@ -4,10 +4,9 @@
 // ============================================================
 
 const SUPABASE_URL = 'https://pcfgkaytlarkihbhjrrq.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'PEGA_AQUI_TU_PUBLISHABLE_KEY';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_gc8YcxGCS9q2n2sJz6gMhA_vpswX0wb';
 
-// Cargamos la librería oficial de Supabase desde CDN.
-// El script debe cargarse antes de este archivo.
+// Cliente de Supabase.
 const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
