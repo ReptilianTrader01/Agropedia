@@ -43,8 +43,6 @@ function crearScript(src) {
 }
 
 async function prepararSupabase() {
-    // planta.html ya carga main.js, pero no necesariamente la librería
-    // de Supabase. La cargamos aquí para mantener esta página independiente.
     if (!window.supabase) {
         await crearScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2');
     }
@@ -62,15 +60,23 @@ async function obtenerPlanta() {
 
     await prepararSupabase();
 
-    // Primero intentamos buscar por UUID.
-    let { data: planta, error } = await supabaseClient
-        .from('plantas')
-        .select('*')
-        .eq('id', plantaId)
-        .maybeSingle();
+    let planta = null;
+    let error = null;
 
-    // También permitimos enlaces amigables como ?id=tomate.
-    if (!planta && !error) {
+    // Si el parámetro tiene formato UUID, buscamos directamente por id.
+    const esUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(plantaId);
+
+    if (esUUID) {
+        const respuesta = await supabaseClient
+            .from('plantas')
+            .select('*')
+            .eq('id', plantaId)
+            .maybeSingle();
+
+        planta = respuesta.data;
+        error = respuesta.error;
+    } else {
+        // También permitimos enlaces amigables como ?id=tomate.
         const nombreBuscado = plantaId.replace(/-/g, ' ');
 
         const respuesta = await supabaseClient
@@ -100,9 +106,6 @@ async function obtenerPlanta() {
 async function renderizarPlanta(planta) {
     document.title = `${planta.nombre_comun} | Agropedia`;
 
-    // --------------------------------------------------------
-    // Información general
-    // --------------------------------------------------------
     const hero = document.querySelector('.plant-hero');
     const heroCategory = document.querySelector('.plant-hero-category');
     const heroTitle = document.querySelector('.plant-hero-content h1');
@@ -128,9 +131,6 @@ async function renderizarPlanta(planta) {
             : 'Consulta las condiciones ideales de cultivo para conocer mejor sus necesidades.';
     }
 
-    // --------------------------------------------------------
-    // Datos básicos
-    // --------------------------------------------------------
     const basicData = document.querySelectorAll('.plant-basic-data > div');
     const datosBasicos = [
         ['Familia', planta.familia],
@@ -145,9 +145,6 @@ async function renderizarPlanta(planta) {
         if (strong) strong.textContent = textoSeguro(datosBasicos[indice][1], 'No disponible');
     });
 
-    // --------------------------------------------------------
-    // Características
-    // --------------------------------------------------------
     const cards = document.querySelectorAll('.characteristic-card');
     const caracteristicas = [
         {
@@ -187,18 +184,11 @@ async function renderizarPlanta(planta) {
         if (valor) valor.textContent = info.valor;
     });
 
-    // --------------------------------------------------------
-    // Imágenes
-    // --------------------------------------------------------
     const imagenes = document.querySelectorAll('.plant-information-image img');
     const slug = slugify(planta.nombre_comun);
 
-    imagenes.forEach((imagen, indice) => {
-        if (indice === 0 && imagenesLocales[slug]) {
-            imagen.src = imagenesLocales[slug];
-        } else if (indice === 1 && imagenesLocales[slug]) {
-            // Mientras no tengamos la galería en Storage, usamos la imagen
-            // principal como respaldo para no romper el diseño.
+    imagenes.forEach((imagen) => {
+        if (imagenesLocales[slug]) {
             imagen.src = imagenesLocales[slug];
         }
         imagen.alt = `Imagen de ${planta.nombre_comun}`;
@@ -208,9 +198,6 @@ async function renderizarPlanta(planta) {
         hero.style.backgroundImage = `url('${imagenesLocales[slug]}')`;
     }
 
-    // --------------------------------------------------------
-    // Datos relacionados desde Supabase
-    // --------------------------------------------------------
     await cargarEtiquetas(planta.id);
     await cargarCuidados(planta.id);
     await cargarRelacionadas(planta.id);
