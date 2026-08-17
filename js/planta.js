@@ -6,8 +6,6 @@
 const params = new URLSearchParams(window.location.search);
 const plantaId = params.get('id');
 
-// Rutas locales provisionales. Más adelante serán reemplazadas
-// por imágenes almacenadas en Supabase Storage.
 const imagenesLocales = {
     tomate: 'assets/images/plants/tomate-detail-1.jpg',
     chile: 'assets/images/plants/chile.jpg',
@@ -52,55 +50,63 @@ async function prepararSupabase() {
     }
 }
 
+function mostrarPagina() {
+    document.body.classList.add('planta-cargada');
+}
+
 async function obtenerPlanta() {
     if (!plantaId) {
         mostrarError('No se indicó qué planta se desea consultar.');
         return;
     }
 
-    await prepararSupabase();
+    try {
+        await prepararSupabase();
 
-    let planta = null;
-    let error = null;
+        let planta = null;
+        let error = null;
 
-    // Si el parámetro tiene formato UUID, buscamos directamente por id.
-    const esUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(plantaId);
+        const esUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(plantaId);
 
-    if (esUUID) {
-        const respuesta = await supabaseClient
-            .from('plantas')
-            .select('*')
-            .eq('id', plantaId)
-            .maybeSingle();
+        if (esUUID) {
+            const respuesta = await supabaseClient
+                .from('plantas')
+                .select('*')
+                .eq('id', plantaId)
+                .maybeSingle();
 
-        planta = respuesta.data;
-        error = respuesta.error;
-    } else {
-        // También permitimos enlaces amigables como ?id=tomate.
-        const nombreBuscado = plantaId.replace(/-/g, ' ');
+            planta = respuesta.data;
+            error = respuesta.error;
+        } else {
+            const nombreBuscado = plantaId.replace(/-/g, ' ');
 
-        const respuesta = await supabaseClient
-            .from('plantas')
-            .select('*')
-            .ilike('nombre_comun', nombreBuscado)
-            .maybeSingle();
+            const respuesta = await supabaseClient
+                .from('plantas')
+                .select('*')
+                .ilike('nombre_comun', nombreBuscado)
+                .maybeSingle();
 
-        planta = respuesta.data;
-        error = respuesta.error;
+            planta = respuesta.data;
+            error = respuesta.error;
+        }
+
+        if (error) {
+            console.error('Error obteniendo la planta:', error);
+            mostrarError('No fue posible obtener la información de la planta.');
+            return;
+        }
+
+        if (!planta) {
+            mostrarError('La planta solicitada no existe en Agropedia.');
+            return;
+        }
+
+        await renderizarPlanta(planta);
+        mostrarPagina();
+    } catch (error) {
+        console.error('Error cargando la página de planta:', error);
+        mostrarError('Ocurrió un problema al cargar la información de la planta.');
     }
-
-    if (error) {
-        console.error('Error obteniendo la planta:', error);
-        mostrarError('No fue posible obtener la información de la planta.');
-        return;
-    }
-
-    if (!planta) {
-        mostrarError('La planta solicitada no existe en Agropedia.');
-        return;
-    }
-
-    await renderizarPlanta(planta);
 }
 
 async function renderizarPlanta(planta) {
@@ -296,9 +302,7 @@ async function cargarRelacionadas(id) {
     if (!contenedor) return;
 
     if (!data.length) {
-        contenedor.innerHTML = `
-            <p>No hay plantas relacionadas registradas todavía.</p>
-        `;
+        contenedor.innerHTML = `<p>No hay plantas relacionadas registradas todavía.</p>`;
         return;
     }
 
@@ -333,17 +337,18 @@ function mostrarError(mensaje) {
     const main = document.querySelector('main');
     if (!main) return;
 
-    const aviso = document.createElement('section');
-    aviso.className = 'section-container';
-    aviso.innerHTML = `
-        <div style="padding: 4rem 1rem; text-align: center;">
-            <h2>No pudimos cargar esta planta</h2>
-            <p>${mensaje}</p>
-            <a href="plantas.html">Volver a plantas →</a>
-        </div>
+    main.innerHTML = `
+        <section class="section-container">
+            <div style="padding: 4rem 1rem; text-align: center;">
+                <h2>No pudimos cargar esta planta</h2>
+                <p>${mensaje}</p>
+                <a href="plantas.html">Volver a plantas →</a>
+            </div>
+        </section>
     `;
 
-    main.prepend(aviso);
+    // Si la consulta falla, también mostramos el mensaje de error.
+    mostrarPagina();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
