@@ -1,6 +1,17 @@
 const SUPABASE_URL = 'https://pcfgkaytlarkihbhjrrq.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_gc8YcxGCS9q2n2sJz6gMhA_vpswX0wb';
 
+function cargarSupabase() {
+    if (window.supabase) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
 function escapeHTML(text = '') {
     return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
@@ -14,8 +25,8 @@ function estadoVacio(mensaje) {
 }
 
 async function cargarContenido() {
-    const supabase = window.supabase?.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-    if (!supabase) throw new Error('Supabase no está disponible en la página Aprende.');
+    await cargarSupabase();
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
     const [cursos, lecciones, videos, articulos] = await Promise.all([
         supabase.from('cursos').select('id,titulo,descripcion,nivel,imagen_url,fecha_creacion').order('fecha_creacion', { ascending: false }).limit(6),
@@ -28,10 +39,10 @@ async function cargarContenido() {
     if (videos.error) throw videos.error;
     if (articulos.error) throw articulos.error;
 
+    const lessonRows = lecciones.data || [];
     const courseGrid = document.querySelector('.course-grid');
     const videoGrid = document.querySelector('.video-grid');
     const articleGrid = document.querySelector('.article-grid');
-    const lessonRows = lecciones.data || [];
 
     if (courseGrid) {
         courseGrid.innerHTML = cursos.data?.length ? cursos.data.map(curso => {
