@@ -41,8 +41,21 @@ function normalizarTexto(texto) {
         .replace(/^-|-$/g, "");
 }
 
-function obtenerImagenPlanta(nombre) {
-    // Durante V1 usamos las imágenes locales existentes como respaldo.
+function obtenerImagenSupabase(planta) {
+    const imagenes = [...(planta?.planta_imagenes || [])]
+        .sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999));
+
+    const principal = imagenes.find(imagen => imagen.tipo === "principal") || imagenes[0];
+
+    return principal?.url || null;
+}
+
+function obtenerImagenPlanta(planta) {
+    const imagenSupabase = obtenerImagenSupabase(planta);
+
+    if (imagenSupabase) return imagenSupabase;
+
+    // Respaldo local mientras terminamos de migrar las imágenes a Storage.
     const archivos = {
         tomate: "tomate.jpg",
         chile: "chile.jpg",
@@ -51,7 +64,7 @@ function obtenerImagenPlanta(nombre) {
         calabaza: "calabaza.jpg"
     };
 
-    const clave = normalizarTexto(nombre);
+    const clave = normalizarTexto(planta?.nombre_comun || "");
 
     if (archivos[clave]) {
         return `assets/images/plants/${archivos[clave]}`;
@@ -95,6 +108,11 @@ async function cargarPlantasPopulares() {
                 tipo_planta,
                 planta_categorias (
                     categorias (nombre)
+                ),
+                planta_imagenes (
+                    url,
+                    tipo,
+                    orden
                 )
             )
         `)
@@ -126,7 +144,7 @@ async function cargarPlantasPopulares() {
         card.innerHTML = `
             <div class="plant-image">
                 <img
-                    src="${obtenerImagenPlanta(planta.nombre_comun)}"
+                    src="${obtenerImagenPlanta(planta)}"
                     alt="${planta.nombre_comun}">
                 <span class="plant-ranking">#${index + 1}</span>
             </div>
@@ -184,7 +202,12 @@ async function cargarPlantasRecomendadas() {
                 tipo_planta,
                 nivel_dificultad,
                 dias_germinacion_min,
-                dias_germinacion_max
+                dias_germinacion_max,
+                planta_imagenes (
+                    url,
+                    tipo,
+                    orden
+                )
             )
         `)
         .lte("mes_inicio", mes)
@@ -217,10 +240,19 @@ async function cargarPlantasRecomendadas() {
               } días`
             : "Consultar ficha";
 
+        const imagen = obtenerImagenPlanta(planta);
         const fila = document.createElement("tr");
 
         fila.innerHTML = `
-            <td>${planta.nombre_comun}</td>
+            <td>
+                <a class="recommended-plant" href="planta.html?id=${planta.id}">
+                    <img
+                        class="recommended-plant-image"
+                        src="${imagen}"
+                        alt="${planta.nombre_comun}">
+                    <span>${planta.nombre_comun}</span>
+                </a>
+            </td>
             <td>${planta.tipo_planta || "Planta"}</td>
             <td>${meses[registro.mes_inicio - 1]} - ${meses[registro.mes_fin - 1]}</td>
             <td>${germinacion}</td>
