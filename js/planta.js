@@ -24,9 +24,7 @@ function slugify(texto) {
 }
 
 function textoSeguro(valor, fallback = '') {
-    return valor === null || valor === undefined || valor === ''
-        ? fallback
-        : valor;
+    return valor === null || valor === undefined || valor === '' ? fallback : valor;
 }
 
 function crearScript(src) {
@@ -63,50 +61,86 @@ async function obtenerPlanta() {
     try {
         await prepararSupabase();
 
-        let planta = null;
-        let error = null;
-
         const esUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(plantaId);
+        let respuesta;
 
         if (esUUID) {
-            const respuesta = await supabaseClient
+            respuesta = await supabaseClient
                 .from('plantas')
                 .select('*')
                 .eq('id', plantaId)
                 .maybeSingle();
-
-            planta = respuesta.data;
-            error = respuesta.error;
         } else {
-            const nombreBuscado = plantaId.replace(/-/g, ' ');
-
-            const respuesta = await supabaseClient
+            respuesta = await supabaseClient
                 .from('plantas')
                 .select('*')
-                .ilike('nombre_comun', nombreBuscado)
+                .ilike('nombre_comun', plantaId.replace(/-/g, ' '))
                 .maybeSingle();
-
-            planta = respuesta.data;
-            error = respuesta.error;
         }
 
-        if (error) {
-            console.error('Error obteniendo la planta:', error);
+        if (respuesta.error) {
+            console.error('Error obteniendo la planta:', respuesta.error);
             mostrarError('No fue posible obtener la información de la planta.');
             return;
         }
 
-        if (!planta) {
+        if (!respuesta.data) {
             mostrarError('La planta solicitada no existe en Agropedia.');
             return;
         }
 
-        await renderizarPlanta(planta);
+        await renderizarPlanta(respuesta.data);
         mostrarPagina();
     } catch (error) {
         console.error('Error cargando la página de planta:', error);
         mostrarError('Ocurrió un problema al cargar la información de la planta.');
     }
+}
+
+async function obtenerImagenesPlanta(id) {
+    const { data, error } = await supabaseClient
+        .from('planta_imagenes')
+        .select('url, tipo, descripcion, orden')
+        .eq('planta_id', id)
+        .order('orden', { ascending: true });
+
+    if (error) {
+        console.error('Error obteniendo imágenes:', error);
+        return [];
+    }
+
+    return data || [];
+}
+
+function aplicarImagenes(imagenes, planta) {
+    const slug = slugify(planta.nombre_comun);
+    const respaldo = imagenesLocales[slug];
+    const ordenadas = [...imagenes].sort((a, b) => a.orden - b.orden);
+
+    const principal = ordenadas.find(imagen => imagen.tipo === 'principal') || ordenadas[0];
+    const secundarias = ordenadas.filter(imagen => imagen !== principal);
+
+    const imagenesLaterales = document.querySelectorAll('.plant-information-image img');
+    const hero = document.querySelector('.plant-hero');
+
+    if (principal?.url) {
+        if (hero) hero.style.backgroundImage = `url('${principal.url}')`;
+        if (imagenesLaterales[0]) {
+            // La primera lateral utiliza la primera imagen secundaria disponible.
+            imagenesLaterales[0].src = (secundarias[0]?.url || principal.url);
+        }
+    } else if (respaldo) {
+        if (hero) hero.style.backgroundImage = `url('${respaldo}')`;
+        if (imagenesLaterales[0]) imagenesLaterales[0].src = respaldo;
+    }
+
+    if (imagenesLaterales[1]) {
+        imagenesLaterales[1].src = secundarias[1]?.url || secundarias[0]?.url || principal?.url || respaldo || '';
+    }
+
+    imagenesLaterales.forEach((imagen, indice) => {
+        imagen.alt = imagenes[indice]?.descripcion || `Imagen de ${planta.nombre_comun}`;
+    });
 }
 
 async function renderizarPlanta(planta) {
@@ -125,10 +159,7 @@ async function renderizarPlanta(planta) {
     if (heroCategory) heroCategory.textContent = textoSeguro(planta.tipo_planta, 'Planta');
 
     if (descriptionParagraphs[0]) {
-        descriptionParagraphs[0].textContent = textoSeguro(
-            planta.descripcion,
-            'Información de esta planta disponible próximamente.'
-        );
+        descriptionParagraphs[0].textContent = textoSeguro(planta.descripcion, 'Información de esta planta disponible próximamente.');
     }
 
     if (descriptionParagraphs[1]) {
@@ -153,56 +184,25 @@ async function renderizarPlanta(planta) {
 
     const cards = document.querySelectorAll('.characteristic-card');
     const caracteristicas = [
-        {
-            titulo: 'Luz',
-            descripcion: 'Cantidad de luz recomendada para el desarrollo de la planta.',
-            valor: textoSeguro(planta.luz, 'No especificada')
-        },
-        {
-            titulo: 'Riego',
-            descripcion: 'Necesidades generales de agua de la planta.',
-            valor: textoSeguro(planta.humedad, 'Consultar cuidados')
-        },
-        {
-            titulo: 'Temperatura',
-            descripcion: 'Rango de temperatura registrado para su cultivo.',
-            valor: planta.temperatura_min !== null && planta.temperatura_max !== null
-                ? `${planta.temperatura_min} - ${planta.temperatura_max} °C`
-                : 'No especificada'
-        },
-        {
-            titulo: 'Suelo',
-            descripcion: 'Consulta los suelos recomendados para esta planta.',
-            valor: 'Ver preferencias de suelo'
-        }
+        ['Luz', 'Cantidad de luz recomendada para el desarrollo de la planta.', textoSeguro(planta.luz, 'No especificada')],
+        ['Riego', 'Necesidades generales de agua de la planta.', textoSeguro(planta.humedad, 'Consultar cuidados')],
+        ['Temperatura', 'Rango de temperatura registrado para su cultivo.', planta.temperatura_min !== null && planta.temperatura_max !== null ? `${planta.temperatura_min} - ${planta.temperatura_max} °C` : 'No especificada'],
+        ['Suelo', 'Consulta los suelos recomendados para esta planta.', 'Ver preferencias de suelo']
     ];
 
     cards.forEach((card, indice) => {
         const info = caracteristicas[indice];
         if (!info) return;
-
         const titulo = card.querySelector('h3');
         const descripcion = card.querySelector('p');
         const valor = card.querySelector('strong');
-
-        if (titulo) titulo.textContent = info.titulo;
-        if (descripcion) descripcion.textContent = info.descripcion;
-        if (valor) valor.textContent = info.valor;
+        if (titulo) titulo.textContent = info[0];
+        if (descripcion) descripcion.textContent = info[1];
+        if (valor) valor.textContent = info[2];
     });
 
-    const imagenes = document.querySelectorAll('.plant-information-image img');
-    const slug = slugify(planta.nombre_comun);
-
-    imagenes.forEach((imagen) => {
-        if (imagenesLocales[slug]) {
-            imagen.src = imagenesLocales[slug];
-        }
-        imagen.alt = `Imagen de ${planta.nombre_comun}`;
-    });
-
-    if (hero && imagenesLocales[slug]) {
-        hero.style.backgroundImage = `url('${imagenesLocales[slug]}')`;
-    }
+    const imagenes = await obtenerImagenesPlanta(planta.id);
+    aplicarImagenes(imagenes, planta);
 
     await cargarEtiquetas(planta.id);
     await cargarCuidados(planta.id);
@@ -222,12 +222,10 @@ async function cargarEtiquetas(id) {
 
     const contenedor = document.querySelector('.plant-tags');
     if (!contenedor) return;
-
     contenedor.innerHTML = '';
 
-    data.forEach(relacion => {
+    (data || []).forEach(relacion => {
         if (!relacion.categorias) return;
-
         const etiqueta = document.createElement('span');
         etiqueta.textContent = relacion.categorias.nombre;
         contenedor.appendChild(etiqueta);
@@ -248,21 +246,15 @@ async function cargarCuidados(id) {
 
     const tbody = document.querySelector('.care-table tbody');
     if (!tbody) return;
-
     tbody.innerHTML = '';
 
-    if (!data.length) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="6">Todavía no hay cuidados registrados para esta planta.</td>
-            </tr>
-        `;
+    if (!data?.length) {
+        tbody.innerHTML = '<tr><td colspan="6">Todavía no hay cuidados registrados para esta planta.</td></tr>';
         return;
     }
 
     data.forEach(cuidado => {
         const fila = document.createElement('tr');
-
         fila.innerHTML = `
             <td>${textoSeguro(cuidado.tipo, '—')}</td>
             <td>${textoSeguro(cuidado.descripcion, '—')}</td>
@@ -271,7 +263,6 @@ async function cargarCuidados(id) {
             <td>—</td>
             <td>${textoSeguro(cuidado.temporada || cuidado.duracion, '—')}</td>
         `;
-
         tbody.appendChild(fila);
     });
 }
@@ -286,7 +277,8 @@ async function cargarRelacionadas(id) {
             plantas:planta_relacionada_id (
                 id,
                 nombre_comun,
-                tipo_planta
+                tipo_planta,
+                planta_imagenes (url, orden)
             )
         `)
         .eq('planta_id', id)
@@ -301,8 +293,8 @@ async function cargarRelacionadas(id) {
     const contenedor = document.querySelector('.related-plants-grid');
     if (!contenedor) return;
 
-    if (!data.length) {
-        contenedor.innerHTML = `<p>No hay plantas relacionadas registradas todavía.</p>`;
+    if (!data?.length) {
+        contenedor.innerHTML = '<p>No hay plantas relacionadas registradas todavía.</p>';
         return;
     }
 
@@ -312,12 +304,11 @@ async function cargarRelacionadas(id) {
         if (!relacion.plantas) return;
 
         const planta = relacion.plantas;
-        const slug = slugify(planta.nombre_comun);
-        const imagen = imagenesLocales[slug] || 'assets/images/plants/default.jpg';
+        const imagenes = [...(planta.planta_imagenes || [])].sort((a, b) => a.orden - b.orden);
+        const imagen = imagenes[0]?.url || imagenesLocales[slugify(planta.nombre_comun)] || 'assets/images/plants/default.jpg';
 
         const card = document.createElement('article');
         card.className = 'related-plant-card';
-
         card.innerHTML = `
             <img src="${imagen}" alt="${planta.nombre_comun}">
             <div>
@@ -326,14 +317,12 @@ async function cargarRelacionadas(id) {
                 <a href="planta.html?id=${planta.id}">Ver planta →</a>
             </div>
         `;
-
         contenedor.appendChild(card);
     });
 }
 
 function mostrarError(mensaje) {
     console.error('Agropedia:', mensaje);
-
     const main = document.querySelector('main');
     if (!main) return;
 
@@ -347,10 +336,7 @@ function mostrarError(mensaje) {
         </section>
     `;
 
-    // Si la consulta falla, también mostramos el mensaje de error.
     mostrarPagina();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    obtenerPlanta();
-});
+document.addEventListener('DOMContentLoaded', obtenerPlanta);
