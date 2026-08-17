@@ -1,723 +1,425 @@
 /* ==================================================
+   ESTADO DE CARGA
+   Oculta el contenido de la plantilla hasta que
+   planta.js termine de obtener la información real.
+================================================== */
+
+body:not(.planta-cargada) main {
+    visibility: hidden;
+    opacity: 0;
+}
+
+body.planta-cargada main {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .15s ease;
+}
+
+/* ==================================================
    HERO DE PLANTA
 ================================================== */
 
 .plant-hero {
-
     min-height: 480px;
-
     background-image:
         linear-gradient(
             rgba(20, 45, 24, .45),
             rgba(20, 45, 24, .65)
         ),
         url("../assets/images/plants/tomate-hero.jpg");
-
     background-size: cover;
-
     background-position: center;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     color: white;
-
 }
 
 .plant-hero-overlay {
-
     width: 100%;
-
     min-height: 480px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     text-align: center;
-
 }
 
 .plant-hero-content {
-
     max-width: 850px;
-
     padding: 40px;
-
 }
 
 .plant-hero-category {
-
     display: inline-block;
-
     padding: 7px 15px;
-
     border-radius: 20px;
-
-    background:
-        rgba(255,255,255,.18);
-
-    border:
-        1px solid rgba(255,255,255,.35);
-
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.35);
     font-size: 13px;
-
     font-weight: 700;
-
     text-transform: uppercase;
-
     letter-spacing: 1px;
-
     margin-bottom: 18px;
-
 }
 
 .plant-hero h1 {
-
-    font-size:
-        clamp(55px, 8vw, 90px);
-
+    font-size: clamp(55px, 8vw, 90px);
     line-height: 1;
-
     margin-bottom: 15px;
-
 }
 
 .plant-hero p {
-
     font-size: 20px;
-
     opacity: .9;
-
     margin-bottom: 25px;
-
 }
 
 .plant-tags {
-
     display: flex;
-
     justify-content: center;
-
     flex-wrap: wrap;
-
     gap: 8px;
-
 }
 
 .plant-tags span {
-
-    padding:
-        6px 13px;
-
+    padding: 6px 13px;
     border-radius: 15px;
-
-    background:
-        rgba(255,255,255,.16);
-
+    background: rgba(255,255,255,.16);
     font-size: 12px;
-
 }
-
 
 /* ==================================================
    INFORMACIÓN GENERAL
 ================================================== */
 
 .plant-information {
-
     display: grid;
-
-    grid-template-columns:
-        1fr 1.4fr 1fr;
-
+    grid-template-columns: 1fr 1.4fr 1fr;
     gap: 35px;
-
     align-items: center;
-
-    padding:
-        100px 0;
-
+    padding: 100px 0;
 }
 
 .plant-information-image {
-
     height: 450px;
-
     border-radius: 20px;
-
     overflow: hidden;
-
-    box-shadow:
-        0 12px 35px
-        rgba(30,70,35,.12);
-
+    box-shadow: 0 12px 35px rgba(30,70,35,.12);
 }
 
 .plant-information-image img {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
-
 }
 
 .plant-description {
-
     padding: 20px;
-
 }
 
 .plant-description h2 {
-
     color: var(--green-dark);
-
     font-size: 40px;
-
     margin-bottom: 18px;
-
 }
 
 .plant-description p {
-
     color: var(--text-light);
-
     font-size: 15px;
-
     line-height: 1.8;
-
     margin-bottom: 15px;
-
 }
 
-
-/* DATOS */
-
 .plant-basic-data {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-
     margin-top: 30px;
-
 }
 
 .plant-basic-data div {
-
     padding: 13px;
-
-    background:
-        var(--green-soft);
-
+    background: var(--green-soft);
     border-radius: 10px;
-
 }
 
 .plant-basic-data span {
-
     display: block;
-
     color: var(--text-light);
-
     font-size: 11px;
-
     text-transform: uppercase;
-
     font-weight: 700;
-
     margin-bottom: 3px;
-
 }
 
 .plant-basic-data strong {
-
     color: var(--green-dark);
-
     font-size: 14px;
-
 }
-
 
 /* ==================================================
    CARACTERÍSTICAS
 ================================================== */
 
 .plant-characteristics {
-
-    background:
-        var(--green-soft);
-
-    padding:
-        90px 0;
-
+    background: var(--green-soft);
+    padding: 90px 0;
 }
 
 .characteristics-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-
 }
 
 .characteristic-card {
-
     background: white;
-
     padding: 30px;
-
     border-radius: 16px;
-
     text-align: center;
-
-    box-shadow:
-        0 5px 20px
-        rgba(30,70,35,.05);
-
+    box-shadow: 0 5px 20px rgba(30,70,35,.05);
 }
 
 .characteristic-icon {
-
     display: block;
-
     font-size: 40px;
-
     margin-bottom: 12px;
-
 }
 
 .characteristic-card h3 {
-
     color: var(--green-dark);
-
     font-size: 19px;
-
     margin-bottom: 8px;
-
 }
 
 .characteristic-card p {
-
     color: var(--text-light);
-
     font-size: 13px;
-
     margin-bottom: 12px;
-
 }
 
 .characteristic-card strong {
-
     color: var(--green);
-
     font-size: 13px;
-
 }
-
 
 /* ==================================================
    CUIDADOS
 ================================================== */
 
 .plant-care {
-
-    padding:
-        100px 0;
-
+    padding: 100px 0;
 }
 
-
-/* ETAPAS */
-
 .growth-stages {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
+    grid-template-columns: repeat(6, 1fr);
     margin-bottom: 40px;
-
-    border-bottom:
-        2px solid var(--border);
-
+    border-bottom: 2px solid var(--border);
 }
 
 .growth-stage {
-
     position: relative;
-
     text-align: center;
-
-    padding:
-        10px 5px 20px;
-
+    padding: 10px 5px 20px;
     color: #879187;
-
 }
 
 .growth-stage span {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     width: 38px;
-
     height: 38px;
-
-    margin:
-        0 auto 8px;
-
+    margin: 0 auto 8px;
     border-radius: 50%;
-
-    background:
-        #edf1ed;
-
+    background: #edf1ed;
     font-size: 12px;
-
     font-weight: 800;
-
 }
 
 .growth-stage strong {
-
     font-size: 13px;
-
 }
 
 .growth-stage.active {
-
     color: var(--green);
-
 }
 
 .growth-stage.active span {
-
-    background:
-        var(--green);
-
+    background: var(--green);
     color: white;
-
 }
 
 .growth-stage.active::after {
-
     content: "";
-
     position: absolute;
-
     bottom: -2px;
-
     left: 0;
-
     width: 100%;
-
     height: 3px;
-
-    background:
-        var(--green);
-
+    background: var(--green);
 }
 
-
-/* TABLA */
-
 .care-table-container {
-
     overflow-x: auto;
-
     border-radius: 15px;
-
-    box-shadow:
-        0 7px 25px
-        rgba(30,70,35,.08);
-
+    box-shadow: 0 7px 25px rgba(30,70,35,.08);
 }
 
 .care-table {
-
     width: 100%;
-
     border-collapse: collapse;
-
     background: white;
-
     min-width: 900px;
-
 }
 
 .care-table th {
-
     padding: 16px;
-
-    background:
-        var(--green-dark);
-
+    background: var(--green-dark);
     color: white;
-
     text-align: left;
-
     font-size: 12px;
-
 }
 
 .care-table td {
-
     padding: 17px 16px;
-
-    border-bottom:
-        1px solid #edf1ed;
-
+    border-bottom: 1px solid #edf1ed;
     color: var(--text-light);
-
     font-size: 13px;
-
 }
 
 .care-table td:first-child {
-
     color: var(--green-dark);
-
     font-weight: 700;
-
 }
-
 
 /* ==================================================
    VIDEO
 ================================================== */
 
 .plant-video-section {
-
-    background:
-        #edf5eb;
-
-    padding:
-        90px 0;
-
+    background: #edf5eb;
+    padding: 90px 0;
 }
 
 .plant-video {
-
     max-width: 900px;
-
     margin: auto;
-
     aspect-ratio: 16 / 9;
-
     border-radius: 18px;
-
     overflow: hidden;
-
-    box-shadow:
-        0 12px 35px
-        rgba(30,70,35,.12);
-
+    box-shadow: 0 12px 35px rgba(30,70,35,.12);
 }
 
 .plant-video iframe {
-
     width: 100%;
-
     height: 100%;
-
     border: none;
-
 }
-
 
 /* ==================================================
    PLANTAS RELACIONADAS
 ================================================== */
 
 .related-plants {
-
-    padding:
-        100px 0;
-
+    padding: 100px 0;
 }
 
 .related-plants-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-
 }
 
 .related-plant-card {
-
     overflow: hidden;
-
     border-radius: 15px;
-
     background: white;
-
-    border:
-        1px solid var(--border);
-
-    box-shadow:
-        0 6px 20px
-        rgba(30,70,35,.06);
-
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px rgba(30,70,35,.06);
 }
 
 .related-plant-card > img {
-
     width: 100%;
-
     height: 190px;
-
     object-fit: cover;
-
 }
 
 .related-plant-card > div {
-
     padding: 20px;
-
 }
 
 .related-plant-card span {
-
     color: var(--green);
-
     font-size: 11px;
-
     font-weight: 800;
-
     text-transform: uppercase;
-
 }
 
 .related-plant-card h3 {
-
     color: var(--green-dark);
-
     font-size: 21px;
-
-    margin:
-        5px 0 10px;
-
+    margin: 5px 0 10px;
 }
 
 .related-plant-card a {
-
     color: var(--green);
-
     font-size: 13px;
-
     font-weight: 700;
-
 }
-
 
 /* ==================================================
    RESPONSIVE
 ================================================== */
 
 @media (max-width: 1000px) {
-
     .plant-information {
-
-        grid-template-columns:
-            1fr 1fr;
-
+        grid-template-columns: 1fr 1fr;
     }
 
     .plant-description {
-
-        grid-column:
-            span 2;
-
+        grid-column: span 2;
         grid-row: 1;
-
     }
 
     .characteristics-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .related-plants-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
-
 @media (max-width: 700px) {
-
     .plant-information {
-
         grid-template-columns: 1fr;
-
     }
 
     .plant-description {
-
         grid-column: auto;
-
         grid-row: auto;
-
     }
 
     .plant-information-image {
-
         height: 300px;
-
     }
 
     .characteristics-grid {
-
         grid-template-columns: 1fr;
-
     }
 
     .growth-stages {
-
-        grid-template-columns:
-            repeat(3, 1fr);
-
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
-
     }
 
     .growth-stage:nth-child(n+4) {
-
         margin-top: 10px;
-
     }
 
     .related-plants-grid {
-
         grid-template-columns: 1fr;
-
     }
-
 }
