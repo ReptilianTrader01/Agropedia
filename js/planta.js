@@ -112,41 +112,104 @@ async function obtenerImagenesPlanta(id) {
     return data || [];
 }
 
-function aplicarImagenes(imagenes, planta) {
+function detectarLuminosidad(url) {
+    return new Promise((resolve) => {
+        if (!url) {
+            resolve('dark');
+            return;
+        }
+
+        const imagen = new Image();
+        imagen.crossOrigin = 'anonymous';
+
+        imagen.onload = () => {
+            try {
+                const canvas = document.createElement('canvas');
+                const maxSize = 100;
+                const escala = Math.min(maxSize / imagen.naturalWidth, maxSize / imagen.naturalHeight, 1);
+
+                canvas.width = Math.max(1, Math.round(imagen.naturalWidth * escala));
+                canvas.height = Math.max(1, Math.round(imagen.naturalHeight * escala));
+
+                const contexto = canvas.getContext('2d', { willReadFrequently: true });
+                contexto.drawImage(imagen, 0, 0, canvas.width, canvas.height);
+
+                const pixeles = contexto.getImageData(0, 0, canvas.width, canvas.height).data;
+                let luminosidadTotal = 0;
+                let cantidad = 0;
+
+                for (let i = 0; i < pixeles.length; i += 16) {
+                    const r = pixeles[i];
+                    const g = pixeles[i + 1];
+                    const b = pixeles[i + 2];
+                    const alpha = pixeles[i + 3];
+
+                    if (alpha < 20) continue;
+
+                    // Luminosidad perceptual aproximada.
+                    luminosidadTotal += (0.299 * r) + (0.587 * g) + (0.114 * b);
+                    cantidad++;
+                }
+
+                const luminosidadPromedio = cantidad
+                    ? luminosidadTotal / cantidad
+                    : 0;
+
+                resolve(luminosidadPromedio >= 155 ? 'light' : 'dark');
+            } catch (error) {
+                console.warn('No se pudo analizar la luminosidad de la imagen:', error);
+                resolve('dark');
+            }
+        };
+
+        imagen.onerror = () => resolve('dark');
+        imagen.src = url;
+    });
+}
+
+async function aplicarEstiloHero(url) {
+    const hero = document.querySelector('.plant-hero');
+    if (!hero || !url) return;
+
+    hero.style.backgroundImage = `url('${url}')`;
+    hero.classList.remove('hero-light', 'hero-dark');
+
+    const luminosidad = await detectarLuminosidad(url);
+    hero.classList.add(luminosidad === 'light' ? 'hero-light' : 'hero-dark');
+}
+
+async function aplicarImagenes(imagenes, planta) {
     const slug = slugify(planta.nombre_comun);
     const respaldo = imagenesLocales[slug];
-    const ordenadas = [...imagenes].sort((a, b) => a.orden - b.orden);
+    const ordenadas = [...imagenes].sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999));
 
     const principal = ordenadas.find(imagen => imagen.tipo === 'principal') || ordenadas[0];
     const secundarias = ordenadas.filter(imagen => imagen !== principal);
+    const urlPrincipal = principal?.url || respaldo;
 
     const imagenesLaterales = document.querySelectorAll('.plant-information-image img');
-    const hero = document.querySelector('.plant-hero');
 
-    if (principal?.url) {
-        if (hero) hero.style.backgroundImage = `url('${principal.url}')`;
+    if (urlPrincipal) {
+        await aplicarEstiloHero(urlPrincipal);
+
         if (imagenesLaterales[0]) {
-            // La primera lateral utiliza la primera imagen secundaria disponible.
-            imagenesLaterales[0].src = (secundarias[0]?.url || principal.url);
+            imagenesLaterales[0].src = secundarias[0]?.url || urlPrincipal;
         }
-    } else if (respaldo) {
-        if (hero) hero.style.backgroundImage = `url('${respaldo}')`;
-        if (imagenesLaterales[0]) imagenesLaterales[0].src = respaldo;
     }
 
     if (imagenesLaterales[1]) {
-        imagenesLaterales[1].src = secundarias[1]?.url || secundarias[0]?.url || principal?.url || respaldo || '';
+        imagenesLaterales[1].src = secundarias[1]?.url || secundarias[0]?.url || urlPrincipal || '';
     }
 
     imagenesLaterales.forEach((imagen, indice) => {
-        imagen.alt = imagenes[indice]?.descripcion || `Imagen de ${planta.nombre_comun}`;
+        const fuente = secundarias[indice] || principal;
+        imagen.alt = fuente?.descripcion || `Imagen de ${planta.nombre_comun}`;
     });
 }
 
 async function renderizarPlanta(planta) {
     document.title = `${planta.nombre_comun} | Agropedia`;
 
-    const hero = document.querySelector('.plant-hero');
     const heroCategory = document.querySelector('.plant-hero-category');
     const heroTitle = document.querySelector('.plant-hero-content h1');
     const heroScientific = document.querySelector('.plant-hero-content p');
@@ -202,7 +265,7 @@ async function renderizarPlanta(planta) {
     });
 
     const imagenes = await obtenerImagenesPlanta(planta.id);
-    aplicarImagenes(imagenes, planta);
+    await aplicarImagenes(imagenes, planta);
 
     await cargarEtiquetas(planta.id);
     await cargarCuidados(planta.id);
