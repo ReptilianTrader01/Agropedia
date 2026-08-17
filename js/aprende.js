@@ -1,6 +1,12 @@
 const SUPABASE_URL = 'https://pcfgkaytlarkihbhjrrq.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_gc8YcxGCS9q2n2sJz6gMhA_vpswX0wb';
 
+(function prepararCarga() {
+    const style = document.createElement('style');
+    style.textContent = `body:not(.learn-content-loaded) .course-grid, body:not(.learn-content-loaded) .video-grid, body:not(.learn-content-loaded) .article-grid { visibility: hidden; } .learn-empty-state { grid-column: 1 / -1; min-height: 160px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 35px; border: 1px dashed rgba(60,80,60,.25); border-radius: 16px; background: rgba(255,255,255,.55); } .learn-empty-state p { margin: 0; color: #5b665d; }`;
+    document.head.appendChild(style);
+})();
+
 function cargarSupabase() {
     if (window.supabase) return Promise.resolve();
     return new Promise((resolve, reject) => {
