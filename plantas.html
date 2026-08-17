@@ -1,1099 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta
-        name="description"
-        content="Explora el catálogo de plantas de Agropedia y descubre sus características, cuidados y formas de cultivo."
-    >
-
-    <title>Plantas | Agropedia</title>
-
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/plantas.css">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explora el catálogo de plantas de Agropedia y descubre sus características, cuidados y formas de cultivo.">
+<title>Plantas | Agropedia</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/plantas.css">
 </head>
-
-
 <body>
-
-
-    <!-- ==================================================
-         NAVBAR
-    =================================================== -->
-
-    <header class="navbar">
-
-        <div class="navbar-container">
-
-
-            <!-- LOGO -->
-
-            <a href="index.html" class="logo">
-
-                <img
-                    src="assets/images/logo.png"
-                    alt="Agropedia"
-                >
-
-            </a>
-
-
-            <!-- NAVEGACIÓN -->
-
-            <nav class="main-navigation">
-
-                <a
-                    href="plantas.html"
-                    class="active"
-                >
-                    Plantas
-                </a>
-
-                <a href="aprende.html">
-                    Aprende
-                </a>
-
-                <a href="tierra.html">
-                    Mejora la tierra
-                </a>
-
-                <a href="nosotros.html">
-                    Nosotros
-                </a>
-
-            </nav>
-
-
-            <!-- BUSCADOR -->
-
-            <div class="search-container">
-
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Buscar..."
-                    aria-label="Buscar en Agropedia"
-                >
-
-                <button
-                    type="button"
-                    id="searchButton"
-                >
-                    🔍
-                </button>
-
-            </div>
-
-
-            <!-- USUARIO -->
-
-            <div class="user-navigation">
-
-                <a
-                    href="login.html"
-                    class="login-button"
-                >
-                    Iniciar sesión
-                </a>
-
-                <a
-                    href="mi-jardin.html"
-                    class="garden-button"
-                >
-                    Mi jardín
-                </a>
-
-                <a
-                    href="perfil.html"
-                    class="user-profile"
-                >
-
-                    <img
-                        src="assets/images/default-user.png"
-                        alt="Perfil del usuario"
-                    >
-
-                </a>
-
-            </div>
-
-
-            <!-- MENÚ MÓVIL -->
-
-            <button
-                class="mobile-menu-button"
-                id="mobileMenuButton"
-                aria-label="Abrir menú"
-            >
-                ☰
-            </button>
-
-
-        </div>
-
-    </header>
-
-
-
-    <!-- ==================================================
-         CONTENIDO PRINCIPAL
-    =================================================== -->
-
-    <main>
-
-
-        <!-- ==================================================
-             HERO
-        =================================================== -->
-
-        <section class="plants-hero">
-
-            <div class="plants-hero-content">
-
-                <span class="section-label">
-                    🌱 Catálogo de Agropedia
-                </span>
-
-                <h1>
-                    Explora el mundo de las plantas
-                </h1>
-
-                <p>
-                    Descubre plantas, aprende sobre sus cuidados
-                    y encuentra las especies ideales para tu jardín.
-                </p>
-
-
-                <!-- BUSCADOR PRINCIPAL -->
-
-                <div class="plants-search">
-
-                    <input
-                        type="search"
-                        id="plantSearch"
-                        placeholder="Busca una planta por nombre..."
-                        autocomplete="off"
-                    >
-
-                    <button
-                        type="button"
-                        id="plantSearchButton"
-                    >
-                        🔍 Buscar
-                    </button>
-
-
-                    <!-- RESULTADOS DEL AUTOCOMPLETADO -->
-
-                    <div
-                        class="search-suggestions"
-                        id="searchSuggestions"
-                    ></div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- ==================================================
-             CATÁLOGO
-        =================================================== -->
-
-        <section class="plants-catalog section-container">
-
-
-            <!-- ==================================================
-                 ENCABEZADO
-            =================================================== -->
-
-            <div class="catalog-header">
-
-                <div>
-
-                    <span class="section-label">
-                        🌿 Catálogo
-                    </span>
-
-                    <h2>
-                        Plantas
-                    </h2>
-
-                    <p>
-                        Explora nuestra colección de especies
-                        y encuentra la que buscas.
-                    </p>
-
-                </div>
-
-
-                <div class="plant-count">
-
-                    <strong id="plantCount">
-                        12
-                    </strong>
-
-                    <span>
-                        plantas
-                    </span>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- ==================================================
-                 CATEGORÍAS
-            =================================================== -->
-
-            <div class="categories-container">
-
-                <button
-                    class="category-button active"
-                    data-category="todas"
-                >
-                    Todas
-                </button>
-
-                <button
-                    class="category-button"
-                    data-category="flores"
-                >
-                    🌸 Flores
-                </button>
-
-                <button
-                    class="category-button"
-                    data-category="hortalizas"
-                >
-                    🥕 Hortalizas
-                </button>
-
-                <button
-                    class="category-button"
-                    data-category="ornamentales"
-                >
-                    🌿 Ornamentales
-                </button>
-
-                <button
-                    class="category-button"
-                    data-category="medicinales"
-                >
-                    🌱 Medicinales
-                </button>
-
-                <button
-                    class="category-button"
-                    data-category="aromaticas"
-                >
-                    🍃 Aromáticas
-                </button>
-
-                <button
-                    class="category-button"
-                    data-category="frutales"
-                >
-                    🍎 Frutales
-                </button>
-
-                <button
-                    class="category-button"
-                    data-category="arboles"
-                >
-                    🌳 Árboles
-                </button>
-
-            </div>
-
-
-
-            <!-- ==================================================
-                 FILTROS
-            =================================================== -->
-
-            <div class="filters-container">
-
-
-                <div class="filter-group">
-
-                    <label for="difficultyFilter">
-                        Dificultad
-                    </label>
-
-                    <select id="difficultyFilter">
-
-                        <option value="todas">
-                            Todas
-                        </option>
-
-                        <option value="facil">
-                            Fácil
-                        </option>
-
-                        <option value="media">
-                            Media
-                        </option>
-
-                        <option value="dificil">
-                            Difícil
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="filter-group">
-
-                    <label for="climateFilter">
-                        Clima
-                    </label>
-
-                    <select id="climateFilter">
-
-                        <option value="todos">
-                            Todos
-                        </option>
-
-                        <option value="calido">
-                            Cálido
-                        </option>
-
-                        <option value="templado">
-                            Templado
-                        </option>
-
-                        <option value="frio">
-                            Frío
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="filter-group">
-
-                    <label for="sunFilter">
-                        Luz solar
-                    </label>
-
-                    <select id="sunFilter">
-
-                        <option value="todas">
-                            Todas
-                        </option>
-
-                        <option value="sol">
-                            Sol directo
-                        </option>
-
-                        <option value="semisombra">
-                            Semisombra
-                        </option>
-
-                        <option value="sombra">
-                            Sombra
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="filter-group">
-
-                    <label for="containerFilter">
-                        Cultivo
-                    </label>
-
-                    <select id="containerFilter">
-
-                        <option value="todos">
-                            Todos
-                        </option>
-
-                        <option value="maceta">
-                            Maceta
-                        </option>
-
-                        <option value="jardin">
-                            Jardín
-                        </option>
-
-                        <option value="ambos">
-                            Maceta y jardín
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    id="clearFilters"
-                    class="clear-filters"
-                >
-                    Limpiar filtros
-                </button>
-
-            </div>
-
-
-
-            <!-- ==================================================
-                 GRID DE PLANTAS
-            =================================================== -->
-
-            <div
-                class="plants-grid"
-                id="plantsGrid"
-            >
-
-
-                <!-- TOMATE -->
-
-                <article
-                    class="plant-card"
-                    data-category="hortalizas"
-                    data-difficulty="media"
-                    data-climate="calido"
-                    data-sun="sol"
-                    data-container="ambos"
-                    data-name="tomate"
-                >
-
-                    <a href="planta.html?id=tomate">
-
-                        <div class="plant-card-image">
-
-                            <img
-                                src="assets/images/plants/tomate.jpg"
-                                alt="Tomate"
-                                loading="lazy"
-                            >
-
-                            <span class="plant-card-category">
-                                Hortaliza
-                            </span>
-
-                        </div>
-
-
-                        <div class="plant-card-content">
-
-                            <h3>
-                                Tomate
-                            </h3>
-
-                            <p class="scientific-name">
-                                <em>Solanum lycopersicum</em>
-                            </p>
-
-                            <p class="plant-card-description">
-                                Planta cultivada por sus frutos
-                                comestibles y de gran uso en huertos.
-                            </p>
-
-
-                            <div class="plant-tags">
-
-                                <span>
-                                    Fruto
-                                </span>
-
-                                <span>
-                                    Comestible
-                                </span>
-
-                                <span>
-                                    Sol
-                                </span>
-
-                            </div>
-
-
-                            <span class="view-plant">
-                                Ver planta →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-
-
-                <!-- ALBAHACA -->
-
-                <article
-                    class="plant-card"
-                    data-category="aromaticas"
-                    data-difficulty="facil"
-                    data-climate="calido"
-                    data-sun="sol"
-                    data-container="ambos"
-                    data-name="albahaca"
-                >
-
-                    <a href="planta.html?id=albahaca">
-
-                        <div class="plant-card-image">
-
-                            <img
-                                src="assets/images/plants/albahaca.jpg"
-                                alt="Albahaca"
-                                loading="lazy"
-                            >
-
-                            <span class="plant-card-category">
-                                Aromática
-                            </span>
-
-                        </div>
-
-
-                        <div class="plant-card-content">
-
-                            <h3>
-                                Albahaca
-                            </h3>
-
-                            <p class="scientific-name">
-                                <em>Ocimum basilicum</em>
-                            </p>
-
-                            <p class="plant-card-description">
-                                Planta aromática muy utilizada
-                                en cocina y jardines domésticos.
-                            </p>
-
-
-                            <div class="plant-tags">
-
-                                <span>
-                                    Aromática
-                                </span>
-
-                                <span>
-                                    Comestible
-                                </span>
-
-                                <span>
-                                    Fácil
-                                </span>
-
-                            </div>
-
-
-                            <span class="view-plant">
-                                Ver planta →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-
-
-                <!-- ROSAL -->
-
-                <article
-                    class="plant-card"
-                    data-category="flores ornamentales"
-                    data-difficulty="media"
-                    data-climate="templado"
-                    data-sun="sol"
-                    data-container="ambos"
-                    data-name="rosal"
-                >
-
-                    <a href="planta.html?id=rosal">
-
-                        <div class="plant-card-image">
-
-                            <img
-                                src="assets/images/plants/rosal.jpg"
-                                alt="Rosal"
-                                loading="lazy"
-                            >
-
-                            <span class="plant-card-category">
-                                Ornamental
-                            </span>
-
-                        </div>
-
-
-                        <div class="plant-card-content">
-
-                            <h3>
-                                Rosal
-                            </h3>
-
-                            <p class="scientific-name">
-                                <em>Rosa</em>
-                            </p>
-
-                            <p class="plant-card-description">
-                                Arbusto ornamental conocido por
-                                sus flores y variedad de colores.
-                            </p>
-
-
-                            <div class="plant-tags">
-
-                                <span>
-                                    Flor
-                                </span>
-
-                                <span>
-                                    Ornamental
-                                </span>
-
-                                <span>
-                                    Perenne
-                                </span>
-
-                            </div>
-
-
-                            <span class="view-plant">
-                                Ver planta →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-
-
-                <!-- LIMÓN -->
-
-                <article
-                    class="plant-card"
-                    data-category="frutales arboles"
-                    data-difficulty="media"
-                    data-climate="calido"
-                    data-sun="sol"
-                    data-container="ambos"
-                    data-name="limon"
-                >
-
-                    <a href="planta.html?id=limon">
-
-                        <div class="plant-card-image">
-
-                            <img
-                                src="assets/images/plants/limon.jpg"
-                                alt="Limón"
-                                loading="lazy"
-                            >
-
-                            <span class="plant-card-category">
-                                Frutal
-                            </span>
-
-                        </div>
-
-
-                        <div class="plant-card-content">
-
-                            <h3>
-                                Limón
-                            </h3>
-
-                            <p class="scientific-name">
-                                <em>Citrus × limon</em>
-                            </p>
-
-                            <p class="plant-card-description">
-                                Árbol frutal cultivado por sus frutos
-                                aromáticos y de sabor ácido.
-                            </p>
-
-
-                            <div class="plant-tags">
-
-                                <span>
-                                    Frutal
-                                </span>
-
-                                <span>
-                                    Árbol
-                                </span>
-
-                                <span>
-                                    Cítrico
-                                </span>
-
-                            </div>
-
-
-                            <span class="view-plant">
-                                Ver planta →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-
-
-                <!-- CHILE -->
-
-                <article
-                    class="plant-card"
-                    data-category="hortalizas"
-                    data-difficulty="media"
-                    data-climate="calido"
-                    data-sun="sol"
-                    data-container="ambos"
-                    data-name="chile"
-                >
-
-                    <a href="planta.html?id=chile">
-
-                        <div class="plant-card-image">
-
-                            <img
-                                src="assets/images/plants/chile.jpg"
-                                alt="Chile"
-                                loading="lazy"
-                            >
-
-                            <span class="plant-card-category">
-                                Hortaliza
-                            </span>
-
-                        </div>
-
-
-                        <div class="plant-card-content">
-
-                            <h3>
-                                Chile
-                            </h3>
-
-                            <p class="scientific-name">
-                                <em>Capsicum</em>
-                            </p>
-
-                            <p class="plant-card-description">
-                                Planta cultivada por sus frutos,
-                                disponibles en numerosas variedades.
-                            </p>
-
-
-                            <div class="plant-tags">
-
-                                <span>
-                                    Fruto
-                                </span>
-
-                                <span>
-                                    Comestible
-                                </span>
-
-                                <span>
-                                    Sol
-                                </span>
-
-                            </div>
-
-
-                            <span class="view-plant">
-                                Ver planta →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-
-
-                <!-- MANZANILLA -->
-
-                <article
-                    class="plant-card"
-                    data-category="medicinales flores aromaticas"
-                    data-difficulty="facil"
-                    data-climate="templado"
-                    data-sun="sol"
-                    data-container="ambos"
-                    data-name="manzanilla"
-                >
-
-                    <a href="planta.html?id=manzanilla">
-
-                        <div class="plant-card-image">
-
-                            <img
-                                src="assets/images/plants/manzanilla.jpg"
-                                alt="Manzanilla"
-                                loading="lazy"
-                            >
-
-                            <span class="plant-card-category">
-                                Medicinal
-                            </span>
-
-                        </div>
-
-
-                        <div class="plant-card-content">
-
-                            <h3>
-                                Manzanilla
-                            </h3>
-
-                            <p class="scientific-name">
-                                <em>Matricaria chamomilla</em>
-                            </p>
-
-                            <p class="plant-card-description">
-                                Planta aromática conocida por sus
-                                flores y sus usos tradicionales.
-                            </p>
-
-
-                            <div class="plant-tags">
-
-                                <span>
-                                    Medicinal
-                                </span>
-
-                                <span>
-                                    Aromática
-                                </span>
-
-                                <span>
-                                    Flor
-                                </span>
-
-                            </div>
-
-
-                            <span class="view-plant">
-                                Ver planta →
-                            </span>
-
-                        </div>
-
-                    </a>
-
-                </article>
-
-
-            </div>
-
-
-
-            <!-- ==================================================
-                 SIN RESULTADOS
-            =================================================== -->
-
-            <div
-                class="no-results"
-                id="noResults"
-            >
-
-                <span>
-                    🌱
-                </span>
-
-                <h3>
-                    No encontramos plantas
-                </h3>
-
-                <p>
-                    Intenta cambiar los filtros o realizar
-                    una búsqueda diferente.
-                </p>
-
-            </div>
-
-
-
-            <!-- ==================================================
-                 PAGINACIÓN
-            =================================================== -->
-
-            <div class="pagination">
-
-                <button
-                    type="button"
-                    disabled
-                >
-                    ←
-                </button>
-
-                <button
-                    type="button"
-                    class="active"
-                >
-                    1
-                </button>
-
-                <button
-                    type="button"
-                >
-                    2
-                </button>
-
-                <button
-                    type="button"
-                >
-                    3
-                </button>
-
-                <span>
-                    ...
-                </span>
-
-                <button
-                    type="button"
-                >
-                    10
-                </button>
-
-                <button
-                    type="button"
-                >
-                    →
-                </button>
-
-            </div>
-
-
-        </section>
-
-    </main>
-
-
-
-    <!-- ==================================================
-         FOOTER
-    =================================================== -->
-
-    <footer class="footer">
-
-        <div class="footer-container">
-
-
-            <div class="footer-brand">
-
-                <h3>
-                    Agropedia
-                </h3>
-
-                <p>
-                    Aprende, cultiva y disfruta tu jardín.
-                </p>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    Explora
-                </h4>
-
-                <a href="plantas.html">
-                    Plantas
-                </a>
-
-                <a href="aprende.html">
-                    Aprende
-                </a>
-
-                <a href="tierra.html">
-                    Mejora la tierra
-                </a>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    Agropedia
-                </h4>
-
-                <a href="nosotros.html">
-                    Nosotros
-                </a>
-
-                <a href="contacto.html">
-                    Contacto
-                </a>
-
-                <a href="login.html">
-                    Iniciar sesión
-                </a>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>
-                    Síguenos
-                </h4>
-
-                <a href="#">
-                    YouTube
-                </a>
-
-                <a href="#">
-                    Instagram
-                </a>
-
-                <a href="#">
-                    Facebook
-                </a>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 Agropedia. Todos los derechos reservados.
-            </p>
-
-        </div>
-
-    </footer>
-
-
-    <script src="js/main.js"></script>
-    <script src="js/plantas.js"></script>
-
+<header class="navbar">
+<div class="navbar-container">
+<a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Agropedia"></a>
+<nav class="main-navigation">
+<a href="plantas.html" class="active">Plantas</a>
+<a href="aprende.html">Aprende</a>
+<a href="tierra.html">Mejora la tierra</a>
+<a href="nosotros.html">Nosotros</a>
+</nav>
+<div class="search-container">
+<input type="search" id="searchInput" placeholder="Buscar..." aria-label="Buscar en Agropedia">
+<button type="button" id="searchButton">🔍</button>
+</div>
+<div class="user-navigation">
+<a href="login.html" class="login-button">Iniciar sesión</a>
+<a href="mi-jardin.html" class="garden-button">Mi jardín</a>
+<a href="perfil.html" class="user-profile"><img src="assets/images/default-user.png" alt="Perfil del usuario"></a>
+</div>
+<button class="mobile-menu-button" id="mobileMenuButton" aria-label="Abrir menú">☰</button>
+</div>
+</header>
+
+<main>
+<section class="plants-hero">
+<div class="plants-hero-content">
+<span class="section-label">🌱 Catálogo de Agropedia</span>
+<h1>Explora el mundo de las plantas</h1>
+<p>Descubre plantas, aprende sobre sus cuidados y encuentra las especies ideales para tu jardín.</p>
+<div class="plants-search">
+<input type="search" id="plantSearch" placeholder="Busca una planta por nombre..." autocomplete="off">
+<button type="button" id="plantSearchButton">🔍 Buscar</button>
+<div class="search-suggestions" id="searchSuggestions"></div>
+</div>
+</div>
+</section>
+
+<section class="plants-catalog section-container">
+<div class="catalog-header">
+<div>
+<span class="section-label">🌿 Catálogo</span>
+<h2>Plantas</h2>
+<p>Explora nuestra colección de especies y encuentra la que buscas.</p>
+</div>
+<div class="plant-count"><strong id="plantCount">0</strong><span>plantas</span></div>
+</div>
+
+<div class="categories-container"></div>
+
+<div class="filters-container">
+<div class="filter-group">
+<label for="difficultyFilter">Dificultad</label>
+<select id="difficultyFilter">
+<option value="todas">Todas</option>
+<option value="facil">Fácil</option>
+<option value="media">Intermedio</option>
+<option value="dificil">Difícil</option>
+</select>
+</div>
+<div class="filter-group">
+<label for="climateFilter">Clima</label>
+<select id="climateFilter">
+<option value="todos">Todos</option>
+<option value="calido">Cálido</option>
+<option value="templado">Templado</option>
+<option value="frio">Frío</option>
+</select>
+</div>
+<div class="filter-group">
+<label for="sunFilter">Luz solar</label>
+<select id="sunFilter">
+<option value="todas">Todas</option>
+<option value="sol">Sol directo</option>
+<option value="semisombra">Semisombra</option>
+<option value="sombra">Sombra</option>
+</select>
+</div>
+<div class="filter-group">
+<label for="containerFilter">Cultivo</label>
+<select id="containerFilter">
+<option value="todos">Todos</option>
+<option value="maceta">Maceta</option>
+<option value="jardin">Jardín</option>
+<option value="ambos">Maceta y jardín</option>
+</select>
+</div>
+<button type="button" id="clearFilters" class="clear-filters">Limpiar filtros</button>
+</div>
+
+<div class="plants-grid" id="plantsGrid"></div>
+
+<div class="no-results" id="noResults">
+<span>🌱</span>
+<h3>No encontramos plantas</h3>
+<p>Prueba con otro término o cambia los filtros.</p>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<div class="footer-container">
+<div class="footer-column">
+<h4>Agropedia</h4>
+<p>Información para cultivar, cuidar y comprender mejor las plantas.</p>
+</div>
+<div class="footer-column">
+<h4>Explora</h4>
+<a href="plantas.html">Plantas</a>
+<a href="aprende.html">Aprende</a>
+<a href="tierra.html">Mejora la tierra</a>
+<a href="nosotros.html">Nosotros</a>
+</div>
+<div class="footer-column">
+<h4>Cuenta</h4>
+<a href="mi-jardin.html">Mi jardín</a>
+<a href="login.html">Iniciar sesión</a>
+</div>
+<div class="footer-column">
+<h4>Síguenos</h4>
+<a href="#">YouTube</a>
+<a href="#">Instagram</a>
+<a href="#">Facebook</a>
+</div>
+</div>
+<div class="footer-bottom"><p>© 2026 Agropedia. Todos los derechos reservados.</p></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/main.js"></script>
+<script src="js/plantas.js"></script>
 </body>
-
 </html>
