@@ -48,6 +48,72 @@ async function prepararSupabase() {
     }
 }
 
+function prepararEstilosHero() {
+    if (document.getElementById('agropedia-dynamic-hero-styles')) return;
+
+    const style = document.createElement('style');
+    style.id = 'agropedia-dynamic-hero-styles';
+    style.textContent = `
+        .plant-hero {
+            position: relative;
+            isolation: isolate;
+            background-repeat: no-repeat;
+            transition: color .35s ease;
+        }
+
+        .plant-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            transition: background .35s ease;
+        }
+
+        .plant-hero-overlay {
+            position: relative;
+            z-index: 1;
+        }
+
+        .plant-hero h1,
+        .plant-hero p {
+            color: inherit;
+            transition: color .35s ease;
+        }
+
+        .plant-hero.hero-dark {
+            color: #ffffff;
+        }
+
+        .plant-hero.hero-dark::before {
+            background: rgba(15, 25, 16, .42);
+        }
+
+        .plant-hero.hero-light {
+            color: #172019;
+        }
+
+        .plant-hero.hero-light::before {
+            background: rgba(255, 255, 255, .48);
+        }
+
+        .plant-hero.hero-light .plant-hero-category,
+        .plant-hero.hero-light .plant-tags span {
+            background: rgba(255, 255, 255, .62);
+            border-color: rgba(23, 32, 25, .20);
+            color: #172019;
+        }
+
+        .plant-hero.hero-dark .plant-hero-category,
+        .plant-hero.hero-dark .plant-tags span {
+            background: rgba(0, 0, 0, .18);
+            border-color: rgba(255, 255, 255, .35);
+            color: #ffffff;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
 function mostrarPagina() {
     document.body.classList.add('planta-cargada');
 }
@@ -59,6 +125,7 @@ async function obtenerPlanta() {
     }
 
     try {
+        prepararEstilosHero();
         await prepararSupabase();
 
         const esUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(plantaId);
@@ -126,7 +193,11 @@ function detectarLuminosidad(url) {
             try {
                 const canvas = document.createElement('canvas');
                 const maxSize = 100;
-                const escala = Math.min(maxSize / imagen.naturalWidth, maxSize / imagen.naturalHeight, 1);
+                const escala = Math.min(
+                    maxSize / imagen.naturalWidth,
+                    maxSize / imagen.naturalHeight,
+                    1
+                );
 
                 canvas.width = Math.max(1, Math.round(imagen.naturalWidth * escala));
                 canvas.height = Math.max(1, Math.round(imagen.naturalHeight * escala));
@@ -138,6 +209,7 @@ function detectarLuminosidad(url) {
                 let luminosidadTotal = 0;
                 let cantidad = 0;
 
+                // Muestreamos cada cuarto píxel para mantener el análisis ligero.
                 for (let i = 0; i < pixeles.length; i += 16) {
                     const r = pixeles[i];
                     const g = pixeles[i + 1];
@@ -146,16 +218,12 @@ function detectarLuminosidad(url) {
 
                     if (alpha < 20) continue;
 
-                    // Luminosidad perceptual aproximada.
                     luminosidadTotal += (0.299 * r) + (0.587 * g) + (0.114 * b);
                     cantidad++;
                 }
 
-                const luminosidadPromedio = cantidad
-                    ? luminosidadTotal / cantidad
-                    : 0;
-
-                resolve(luminosidadPromedio >= 155 ? 'light' : 'dark');
+                const promedio = cantidad ? luminosidadTotal / cantidad : 0;
+                resolve(promedio >= 155 ? 'light' : 'dark');
             } catch (error) {
                 console.warn('No se pudo analizar la luminosidad de la imagen:', error);
                 resolve('dark');
@@ -367,7 +435,7 @@ async function cargarRelacionadas(id) {
         if (!relacion.plantas) return;
 
         const planta = relacion.plantas;
-        const imagenes = [...(planta.planta_imagenes || [])].sort((a, b) => a.orden - b.orden);
+        const imagenes = [...(planta.planta_imagenes || [])].sort((a, b) => (a.orden ?? 999) - (b.orden ?? 999));
         const imagen = imagenes[0]?.url || imagenesLocales[slugify(planta.nombre_comun)] || 'assets/images/plants/default.jpg';
 
         const card = document.createElement('article');
