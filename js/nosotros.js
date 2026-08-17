@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+async function inicializarNosotros() {
     if (typeof supabaseClient === "undefined") return;
 
     const { data: contenido, error: contenidoError } = await supabaseClient.from("nosotros_contenido").select("clave,etiqueta,titulo,contenido,imagen_url,orden").order("orden");
@@ -15,7 +15,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (redesError) { console.error("Error cargando redes sociales:", redesError); return; }
     const grid = document.querySelector(".social-grid");
     if (grid && redes?.length) grid.innerHTML = redes.map(red => `<a href="${escaparHTML(red.url || "#")}" class="social-card ${escaparHTML(red.plataforma.toLowerCase())}" target="_blank" rel="noopener noreferrer"><div class="social-icon">${escaparHTML(red.icono || "•")}</div><div><h3>${escaparHTML(red.plataforma)}</h3><p>${escaparHTML(red.descripcion || "")}</p></div></a>`).join("");
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", inicializarNosotros);
+} else {
+    inicializarNosotros();
+}
 
 function escaparHTML(valor = "") { return String(valor).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#039;"); }
 function parrafos(texto) { return (texto || "").split(/\n\s*\n/).filter(Boolean); }
