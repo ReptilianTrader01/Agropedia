@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contenido educativo de Agropedia organizado por tema.">
+    <title>Tema | Agropedia</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tema.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Agropedia"></a>
+            <nav class="main-navigation">
+                <a href="index.html">Inicio</a>
+                <a href="plantas.html">Plantas</a>
+                <a href="aprende.html" class="active">Aprende</a>
+                <a href="nosotros.html">Nosotros</a>
+            </nav>
+            <div class="search-container">
+                <input type="search" id="searchInput" placeholder="Buscar..." aria-label="Buscar en Agropedia">
+                <button type="button" id="searchButton" aria-label="Buscar">🔍</button>
+            </div>
+            <div class="user-navigation">
+                <a href="login.html" class="login-button">Iniciar sesión</a>
+                <a href="mi-jardin.html" class="garden-button">Mi jardín</a>
+                <a href="perfil.html" class="user-profile"><img src="assets/images/default-user.png" alt="Perfil del usuario"></a>
+            </div>
+            <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Abrir menú">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="topic-hero">
+            <div class="topic-hero-overlay"></div>
+            <div class="topic-hero-content">
+                <span class="section-label" id="topicIcon">🌱</span>
+                <h1 id="topicName">Tema</h1>
+                <p id="topicPhrase">Aprende algo nuevo para cultivar mejor.</p>
+                <p class="topic-description" id="topicDescription"></p>
+            </div>
+        </section>
+
+        <section class="topic-filters section-container">
+            <div class="section-heading">
+                <span class="section-label">🔎 Filtrar contenido</span>
+                <h2>Encuentra lo que necesitas</h2>
+            </div>
+            <div class="format-filters" id="formatFilters" role="group" aria-label="Filtrar por formato">
+                <button class="format-filter active" data-format="todos">Todo</button>
+                <button class="format-filter" data-format="curso">🎓 Cursos</button>
+                <button class="format-filter" data-format="video">🎥 Videos</button>
+                <button class="format-filter" data-format="pdf">📄 PDFs</button>
+                <button class="format-filter" data-format="imagen">🖼️ Imágenes</button>
+            </div>
+        </section>
+
+        <section class="topic-section courses-topic-section" data-section="cursos">
+            <div class="section-container">
+                <div class="topic-section-heading">
+                    <div><span class="section-label">🎓 Formación</span><h2>Cursos</h2><p>Aprende paso a paso con contenidos organizados.</p></div>
+                    <button class="section-toggle" type="button" aria-expanded="false">Ver todo ↓</button>
+                </div>
+                <div class="topic-featured-grid" id="coursesFeatured"></div>
+                <div class="topic-all-grid" id="coursesAll" hidden></div>
+            </div>
+        </section>
+
+        <section class="topic-section videos-topic-section" data-section="videos">
+            <div class="section-container">
+                <div class="topic-section-heading">
+                    <div><span class="section-label">🎥 Audiovisual</span><h2>Videos</h2><p>Técnicas y explicaciones prácticas para aprender viendo.</p></div>
+                    <button class="section-toggle" type="button" aria-expanded="false">Ver todo ↓</button>
+                </div>
+                <div class="topic-featured-grid" id="videosFeatured"></div>
+                <div class="topic-all-grid" id="videosAll" hidden></div>
+            </div>
+        </section>
+
+        <section class="topic-section resources-topic-section" data-section="recursos">
+            <div class="section-container">
+                <div class="topic-section-heading">
+                    <div><span class="section-label">📚 Material de consulta</span><h2>PDFs e imágenes</h2><p>Material para consultar, guardar y volver a revisar cuando lo necesites.</p></div>
+                    <button class="section-toggle" type="button" aria-expanded="false">Ver todo ↓</button>
+                </div>
+                <div class="topic-featured-grid" id="resourcesFeatured"></div>
+                <div class="topic-all-grid" id="resourcesAll" hidden></div>
+            </div>
+        </section>
+
+        <section class="topic-empty section-container" id="topicEmpty" hidden>
+            <div><span>🌱</span><h2>Aún estamos preparando este tema</h2><p>Pronto encontrarás cursos, videos, PDFs e imágenes aquí.</p></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand"><h3>Agropedia</h3><p>Aprende, cultiva y disfruta tu jardín.</p></div>
+            <div class="footer-column"><h4>Explora</h4><a href="index.html">Inicio</a><a href="plantas.html">Plantas</a><a href="aprende.html">Aprende</a></div>
+            <div class="footer-column"><h4>Agropedia</h4><a href="nosotros.html">Nosotros</a><a href="login.html">Iniciar sesión</a></div>
+        </div>
+        <div class="footer-bottom"><p>© 2026 Agropedia. Todos los derechos reservados.</p></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/tema.js"></script>
+</body>
+</html>
