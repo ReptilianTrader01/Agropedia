@@ -23,15 +23,60 @@ function obtenerImagenPlanta(planta) {
 // ==================================================
 // NAVBAR COMPARTIDA
 // ==================================================
+function prepararEstilosNavbar() {
+    if (document.getElementById("agropedia-navbar-styles")) return;
+    const style = document.createElement("style");
+    style.id = "agropedia-navbar-styles";
+    style.textContent = `
+        .navbar-container { position: relative; }
+        .main-navigation { position: relative; }
+        .main-navigation a { position: relative; padding: 28px 0; }
+        .main-navigation a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 17px;
+            height: 3px;
+            border-radius: 3px;
+            background: #3d8b40;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .28s ease;
+        }
+        .main-navigation a.active::after { transform: scaleX(1); }
+        .main-navigation a.active { color: #3d8b40; }
+        .user-navigation {
+            margin-left: auto;
+            padding-left: 26px;
+            border-left: 1px solid #dfe8df;
+            flex-shrink: 0;
+        }
+        @media (max-width: 850px) {
+            .main-navigation a { padding: 18px 0; }
+            .main-navigation a::after { bottom: 8px; }
+            .user-navigation { margin-left: 0; padding-left: 0; border-left: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .main-navigation a::after { transition: none; }
+        }
+        @view-transition { navigation: auto; }
+        ::view-transition-old(nav-active),
+        ::view-transition-new(nav-active) { animation-duration: .28s; }
+    `;
+    document.head.appendChild(style);
+}
+
 function normalizarNavbar() {
+    prepararEstilosNavbar();
     const nav = document.querySelector(".main-navigation");
     if (!nav) return;
     const pagina = location.pathname.split("/").pop() || "index.html";
     nav.innerHTML = `
         <a href="index.html" class="${pagina === "index.html" ? "active" : ""}">Inicio</a>
-        <a href="plantas.html" class="${pagina === "plantas.html" || pagina === "planta.html" ? "active" : ""}">Plantas</a>
-        <a href="aprende.html" class="${pagina === "aprende.html" || pagina === "tema.html" ? "active" : ""}">Aprende</a>
-        <a href="nosotros.html" class="${pagina === "nosotros.html" ? "active" : ""}">Nosotros</a>`;
+        <a href="plantas.html" class="${pagina === "plantas.html" || pagina === "planta.html" ? "active" : ""}>Plantas</a>
+        <a href="aprende.html" class="${pagina === "aprende.html" || pagina === "tema.html" ? "active" : ""}>Aprende</a>
+        <a href="nosotros.html" class="${pagina === "nosotros.html" ? "active" : ""}>Nosotros</a>`;
     document.querySelectorAll(".search-container").forEach(el => el.remove());
     document.querySelectorAll('a[href="tierra.html"]').forEach(el => {
         el.href = "tema.html?tema=suelo";
@@ -105,11 +150,32 @@ async function inicializarCuidadosPlanta(){
     stages.forEach(s=>{const go=()=>render(s.dataset.etapa);s.addEventListener("click",go);s.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});});
     render(stages[0]?.dataset.etapa||nombres[0]);
 }
-function actualizarTituloAprendePlanta(){const h=document.querySelector(".plant-video-section .section-heading h2"),plant=document.querySelector(".plant-hero-content h1");if(h&&plant&&plant.textContent.trim())h.textContent=`Aprende sobre el ${plant.textContent.trim().toLowerCase()}`;}
+
+function articuloParaPlanta(nombre){
+    const n=String(nombre||"").trim().toLowerCase();
+    const femeninas=["calabaza","albahaca","berenjena","lechuga","zanahoria","cebolla","fresa","frambuesa","menta","lavanda","salvia","manzanilla","rosa","orquídea"];
+    return femeninas.some(p=>n===p||n.endsWith(` ${p}`))?"la":"el";
+}
+function actualizarTituloAprendePlanta(){const h=document.querySelector(".plant-video-section .section-heading h2"),plant=document.querySelector(".plant-hero-content h1");if(h&&plant&&plant.textContent.trim())h.textContent=`Aprende sobre ${articuloParaPlanta(plant.textContent.trim())} ${plant.textContent.trim().toLowerCase()}`;}
+
+async function cargarSueloIdealPlanta(){
+    const cards=document.querySelectorAll(".characteristic-card"),card=[...cards].find(c=>c.querySelector("h3")?.textContent.trim().toLowerCase()==="suelo");
+    if(!card||typeof supabaseClient==="undefined")return;
+    const id=new URLSearchParams(location.search).get("id");if(!id)return;
+    let q=supabaseClient.from("plantas").select("id");if(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id))q=q.eq("id",id);else q=q.ilike("nombre_comun",id.replace(/-/g," "));const p=await q.maybeSingle();if(p.error||!p.data)return;
+    const {data,error}=await supabaseClient.from("planta_suelos").select("preferencia,recomendacion,suelos(nombre,descripcion,ph_min,ph_max,drenaje,retencion_humedad)").eq("planta_id",p.data.id).order("preferencia");
+    const desc=card.querySelector("p"),valor=card.querySelector("strong");
+    if(error){console.error("Error obteniendo suelo ideal:",error);if(desc)desc.textContent="No fue posible consultar las preferencias de suelo.";if(valor)valor.textContent="No disponible";return;}
+    const rows=(data||[]).filter(r=>r.suelos);
+    if(!rows.length){if(desc)desc.textContent="Todavía no hay preferencias de suelo registradas para esta planta.";if(valor)valor.textContent="No registrado";return;}
+    const nombres=rows.map(r=>r.suelos.nombre).filter(Boolean),recs=rows.map(r=>r.recomendacion).filter(Boolean),detalles=rows.map(r=>r.suelos.descripcion).filter(Boolean);
+    if(valor)valor.textContent=nombres.join(" · ")||"No especificado";
+    if(desc)desc.textContent=recs.join(" ")||detalles.join(" ")||"Consulta las características del suelo recomendado para esta planta.";
+}
 
 function iniciar(){
     normalizarNavbar();
     if(document.getElementById("plantsCarouselTrack")){cargarPlantasRecomendadasTemporada();cargarRankingPopularidad();actualizarPanelEstacion();actualizarPanelLunar();updateGardenAdvice();setInterval(updateGardenAdvice,60000);}
-    if(document.querySelector(".growth-stage")){inicializarCuidadosPlanta();setTimeout(inicializarCuidadosPlanta,1500);const target=document.querySelector(".plant-hero-content h1");if(target){const obs=new MutationObserver(actualizarTituloAprendePlanta);obs.observe(target,{childList:true,characterData:true,subtree:true});}setTimeout(actualizarTituloAprendePlanta,100);}
+    if(document.querySelector(".growth-stage")){inicializarCuidadosPlanta();setTimeout(inicializarCuidadosPlanta,1500);setTimeout(cargarSueloIdealPlanta,250);const target=document.querySelector(".plant-hero-content h1");if(target){const obs=new MutationObserver(actualizarTituloAprendePlanta);obs.observe(target,{childList:true,characterData:true,subtree:true});}setTimeout(actualizarTituloAprendePlanta,250);}
 }
 document.addEventListener("DOMContentLoaded",iniciar);
