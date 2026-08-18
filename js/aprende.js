@@ -14,6 +14,17 @@ const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_gc8YcxGCS9q2n2sJz6gMhA_vpswX0wb
     document.head.appendChild(style);
 })();
 
+function configurarNavbarAprende(){
+    const nav = document.querySelector('.main-navigation');
+    if(!nav) return;
+    nav.innerHTML = `
+        <a href="index.html">Inicio</a>
+        <a href="plantas.html">Plantas</a>
+        <a href="aprende.html" class="active">Aprende</a>
+        <a href="nosotros.html">Nosotros</a>
+    `;
+}
+
 function cargarSupabase() {
     if (window.supabase) return Promise.resolve();
     return new Promise((resolve, reject) => {
@@ -26,13 +37,11 @@ function cargarSupabase() {
 }
 
 function escapeHTML(text = '') { return String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
-function normalizeText(text) { return String(text || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
 function estadoVacio(mensaje) { return `<div class="learn-empty-state"><p>${escapeHTML(mensaje)}</p></div>`; }
 
 function configurarTemas(){
     document.querySelectorAll('.category-card[data-category]').forEach(card => {
-        const tema = card.dataset.category;
-        card.href = `tema.html?tema=${encodeURIComponent(tema)}`;
+        card.href = `tema.html?tema=${encodeURIComponent(card.dataset.category)}`;
     });
 }
 
@@ -59,7 +68,7 @@ async function cargarContenido() {
     if(courseGrid) courseGrid.innerHTML = cursos.data?.length ? cursos.data.map(curso => {
         const count = lessonRows.filter(l => l.curso_id === curso.id).length;
         const image = curso.imagen_url || 'assets/images/learn/course-placeholder.jpg';
-        return `<article class="course-card"><div class="course-image"><img src="${escapeHTML(image)}" alt="${escapeHTML(curso.titulo)}" loading="lazy"><span class="course-level">${escapeHTML(curso.nivel)}</span></div><div class="course-content"><span class="course-category">🎓 Curso</span><h3>${escapeHTML(curso.titulo)}</h3><p>${escapeHTML(curso.descripcion || 'Curso de Agropedia.')}</p><div class="course-meta"><span>📚 ${count} ${count===1?'lección':'lecciones'}</span></div><a href="curso.html?id=${encodeURIComponent(curso.id)}">Ver curso →</a></div></article>`;
+        return `<article class="course-card"><div class="course-image"><img src="${escapeHTML(image)}" alt="${escapeHTML(curso.titulo)}" loading="lazy"><span class="course-level">${escapeHTML(curso.nivel || 'Curso')}</span></div><div class="course-content"><span class="course-category">🎓 Curso</span><h3>${escapeHTML(curso.titulo)}</h3><p>${escapeHTML(curso.descripcion || 'Curso de Agropedia.')}</p><div class="course-meta"><span>📚 ${count} ${count===1?'lección':'lecciones'}</span></div><a href="curso.html?id=${encodeURIComponent(curso.id)}">Ver curso →</a></div></article>`;
     }).join('') : estadoVacio('Todavía no hay cursos publicados. Pronto agregaremos nuevos contenidos.');
 
     if(videoGrid) videoGrid.innerHTML = videos.data?.length ? videos.data.map(video => {
@@ -71,6 +80,7 @@ async function cargarContenido() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    configurarNavbarAprende();
     configurarTemas();
     try { await cargarContenido(); }
     catch(error) {
