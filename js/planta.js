@@ -73,6 +73,7 @@ async function obtenerPlanta() {
         }
         if (respuesta.error) return mostrarError('No fue posible obtener la información de la planta.');
         if (!respuesta.data) return mostrarError('La planta solicitada no existe en Agropedia.');
+        console.log('Agropedia - planta cargada:', respuesta.data.nombre_comun, 'suelo:', respuesta.data.suelo);
         await renderizarPlanta(respuesta.data);
         mostrarPagina();
     } catch (error) {
