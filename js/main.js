@@ -1,6 +1,6 @@
 // ==================================================
 // AGROPEDIA - MAIN.JS
-// Navegación compartida + funciones dinámicas del inicio
+// Navegación compartida + funciones dinámicas del sitio
 // ==================================================
 
 const meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -33,6 +33,10 @@ function normalizarNavbar() {
         <a href="aprende.html" class="${pagina === "aprende.html" || pagina === "tema.html" ? "active" : ""}">Aprende</a>
         <a href="nosotros.html" class="${pagina === "nosotros.html" ? "active" : ""}">Nosotros</a>`;
     document.querySelectorAll(".search-container").forEach(el => el.remove());
+    document.querySelectorAll('a[href="tierra.html"]').forEach(el => {
+        el.href = "tema.html?tema=suelo";
+        if (el.textContent.trim().toLowerCase().includes("tierra")) el.textContent = "Aprender sobre el suelo →";
+    });
 }
 
 // ==================================================
@@ -55,6 +59,14 @@ async function cargarPlantasRecomendadasTemporada() {
     });
     const h=document.querySelector(".seasonal-plants .section-heading h2"),d=document.querySelector(".seasonal-plants .section-heading p"),f=document.querySelector(".carousel-footer > span"),n=meses[mesActual-1];
     if(h)h.textContent=`Plantas recomendadas para ${n}`;if(d)d.textContent="Descubre plantas recomendadas para sembrar durante la temporada actual.";if(f)f.textContent=`${n.charAt(0).toUpperCase()+n.slice(1)} ${añoActual}`;
+    inicializarCarrusel();
+}
+function inicializarCarrusel(){
+    const track=document.getElementById("plantsCarouselTrack"),prev=document.getElementById("carouselPrev"),next=document.getElementById("carouselNext");
+    if(!track||!prev||!next||track.dataset.carouselReady)return;
+    track.dataset.carouselReady="true";
+    const mover=(direccion)=>{const tarjeta=track.querySelector(".plant-card");if(!tarjeta)return;track.scrollBy({left:direccion*(tarjeta.getBoundingClientRect().width+24),behavior:"smooth"});};
+    prev.addEventListener("click",()=>mover(-1));next.addEventListener("click",()=>mover(1));
 }
 
 // ==================================================
@@ -98,6 +110,6 @@ function actualizarTituloAprendePlanta(){const h=document.querySelector(".plant-
 function iniciar(){
     normalizarNavbar();
     if(document.getElementById("plantsCarouselTrack")){cargarPlantasRecomendadasTemporada();cargarRankingPopularidad();actualizarPanelEstacion();actualizarPanelLunar();updateGardenAdvice();setInterval(updateGardenAdvice,60000);}
-    if(document.querySelector(".growth-stage")){inicializarCuidadosPlanta();const target=document.querySelector(".plant-hero-content h1");if(target){const obs=new MutationObserver(actualizarTituloAprendePlanta);obs.observe(target,{childList:true,characterData:true,subtree:true});}setTimeout(actualizarTituloAprendePlanta,100);}
+    if(document.querySelector(".growth-stage")){inicializarCuidadosPlanta();setTimeout(inicializarCuidadosPlanta,1500);const target=document.querySelector(".plant-hero-content h1");if(target){const obs=new MutationObserver(actualizarTituloAprendePlanta);obs.observe(target,{childList:true,characterData:true,subtree:true});}setTimeout(actualizarTituloAprendePlanta,100);}
 }
 document.addEventListener("DOMContentLoaded",iniciar);
