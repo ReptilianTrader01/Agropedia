@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mi jardín | Agropedia</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/usuarios.css"></head>
+<body>
+<header class="navbar"><div class="navbar-container"><a href="index.html" class="logo"><img src="assets/images/logo.png" alt="Agropedia"></a><nav class="main-navigation"><a href="index.html">Inicio</a><a href="plantas.html">Plantas</a><a href="aprende.html">Aprende</a><a href="nosotros.html">Nosotros</a></nav><nav class="user-navigation"><a href="cuenta.html">Cuenta</a><a href="mi-jardin.html" class="active">Mi jardín</a><a href="perfil.html">Perfil</a></nav></div></header>
+<main class="user-page section-container"><section class="page-heading"><span class="eyebrow">MI JARDÍN</span><h1>Tu jardín en Agropedia</h1><p>Organiza tus cultivos reales y registra lo que ocurre en cada bancal.</p></section>
+<div id="gardenLoginNotice" class="user-card hidden"><h2>Inicia sesión para entrar a Mi jardín</h2><p>Aquí podrás guardar favoritos, bancales y bitácoras.</p><a class="primary-button inline-button" href="cuenta.html">Iniciar sesión</a></div>
+<section id="gardenContent" class="hidden">
+  <div class="garden-overview"><article class="metric-card"><span>Región</span><strong id="gardenRegion">—</strong></article><article class="metric-card"><span>Fase lunar</span><strong id="gardenMoon">—</strong></article><article class="metric-card"><span>Favoritos</span><strong id="favoriteCount">0</strong></article><article class="metric-card"><span>Bancales</span><strong id="bedCount">0</strong></article></div>
+  <section class="garden-section"><div class="section-title-row"><div><span class="eyebrow">MIS PLANTAS</span><h2>Favoritos</h2></div></div><div id="favoritesGrid" class="garden-cards"></div></section>
+  <section class="garden-section"><div class="section-title-row"><div><span class="eyebrow">ORGANIZACIÓN</span><h2>Mis bancales</h2></div><button id="newBedButton" class="primary-button">+ Nuevo bancal</button></div><div id="bedsGrid" class="garden-cards"></div></section>
+</section>
+</main>
+<div id="bedModal" class="modal hidden"><div class="modal-card"><button id="closeBedModal" class="modal-close">×</button><h2>Crear bancal</h2><form id="bedForm"><label>Nombre<input id="bedName" required placeholder="Ej. Bancal de tomates"></label><label>Descripción<textarea id="bedDescription" rows="3"></textarea></label><div class="two-columns"><label>Ancho (m)<input id="bedWidth" type="number" min="0" step="0.1"></label><label>Largo (m)<input id="bedLength" type="number" min="0" step="0.1"></label></div><button class="primary-button" type="submit">Crear bancal</button><p id="bedMessage" class="form-message"></p></form></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="js/supabase.js"></script><script src="js/jardin.js"></script><script src="js/main.js"></script>
+</body></html>
